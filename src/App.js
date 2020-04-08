@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import EventCalender from './components/full-calender'
+import EventCalender from './components/full-calender';
 
 class App extends Component{
 

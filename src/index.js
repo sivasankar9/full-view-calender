@@ -7,7 +7,8 @@ import {createStore, combineReducers} from 'redux'
 import calenderEvents from './components/full-calender/reducer';
 
 let store = createStore(combineReducers({
-    fullCalender:calenderEvents
+    fullCalender:calenderEvents,
+
 }))
 
 render(<Provider store = {store}>

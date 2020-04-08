@@ -1,7 +1,7 @@
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { events } from './actions'
+import { events,model, addEvent } from './actions'
 import EventCalender from './components'
 
 const filterData = (eventData, evtCategory) => eventData.filter(item => item.eventType !== evtCategory);
@@ -20,11 +20,12 @@ const filterEvents = (criteria, events) => {
 }     
 const mapStateToProps = state => ({
     calenderdata: filterEvents(state.fullCalender.filterCriteria, state.fullCalender.calenderEvents.events),
-    calendercriterai: state.fullCalender.filterCriteria
+    calendercriterai: state.fullCalender.filterCriteria,
+    modelWindowCalender:state.fullCalender.calenderModelWindow
 });
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ events }, dispatch)
+    return bindActionCreators({ events,model,addEvent }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventCalender);

@@ -1,0 +1,52 @@
+{
+    "extends": [
+        "react-app",
+        "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": [
+        "jsx-a11y"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "semi": "error",
+        "indent": [0,4],
+        "brace-style": 1,
+        "camelcase": 1,
+        "no-undef": 2,
+        "no-undef-init": 2,
+        "no-undefined": 2,
+        "no-unused-vars": 2,
+        "no-use-before-define": 2,
+        "newline-after-var": 0
+    },
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "binaryLiterals": true,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": true,
+        "objectLiteralComputedProperties": true,
+        "objectLiteralDuplicateProperties": true,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "octalLiterals": true,
+        "regexUFlag": true,
+        "regexYFlag": true,
+        "spread": true,
+        "superInFunctions": true,
+        "templateStrings": true,
+        "unicodeCodePointEscapes": true,
+        "globalReturn": true,
+        "jsx": true
+    }
+}

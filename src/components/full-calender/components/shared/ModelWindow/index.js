@@ -1,16 +1,16 @@
+import './style.css';
 import React, { useRef,useState } from 'react';
-import './style.css'
 
 export default ({ modelShow, handlerClick }) => {
     const inputEl = useRef(null);
 
-    const [EventType,updateState] = useState('BILL')
+    const [EventType,updateState] = useState('BILL');
 
     const selectHandler = (e)=>{
 
-        updateState(e.target.value)
+        updateState(e.target.value);
 
-    }
+    };
 
     if (modelShow) {
         return <div className='model-window'>
@@ -22,22 +22,22 @@ export default ({ modelShow, handlerClick }) => {
 
                     <input type='text' ref={inputEl} />
 
-                    <select onChange = {selectHandler}>
-                        <option>EVENT</option>
-                        <option selected >BILL</option>
+                    <select onBlur={selectHandler} onChange = {selectHandler}>
+                        <option value="Event">EVENT</option>
+                        <option value="Bill">BILL</option>
                     </select>
 
                     <button onClick={() => {
                         if (inputEl.current.value !== '') {
-                            handlerClick(inputEl.current.value,EventType)
+                            handlerClick(inputEl.current.value,EventType);
                         }
                     }
                     }>SAVE</button>
 
                 </form>
             </div>
-        </div>
+        </div>;
     }
     return null;
-}
+};
 

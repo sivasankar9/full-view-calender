@@ -23,7 +23,8 @@
         "no-undefined": 2,
         "no-unused-vars": 2,
         "no-use-before-define": 2,
-        "newline-after-var": 0
+        "newline-after-var": 0,
+        "sort-imports": 2
     },
     "ecmaFeatures": {
         "arrowFunctions": true,

@@ -1,5 +1,5 @@
 
-import {addEvent,events,model} from './actions';
+import {addEvent,events,model,fetchData} from './actions';
 import EventCalender from './components';
 import { connect } from 'react-redux';
 
@@ -23,4 +23,4 @@ const mapStateToProps = state => ({
     modelWindowCalender:state.fullCalender.calenderModelWindow
 });
 
-export default connect(mapStateToProps, {events,model,addEvent})(EventCalender);
+export default connect(mapStateToProps, {events,model,addEvent,fetchData})(EventCalender);

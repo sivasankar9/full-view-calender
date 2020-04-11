@@ -1,5 +1,5 @@
 
-import {addEvent,events,model,fetchData} from './actions';
+import {addEvent,events,fetchData,model} from './actions';
 import EventCalender from './components';
 import { connect } from 'react-redux';
 

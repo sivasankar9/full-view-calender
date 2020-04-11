@@ -1,3 +1,5 @@
+import fetchCallData from '../components/shared/fetchData';
+
 export const events = payload => dispatch=>{
 	dispatch({
 		type: "EVENTS_SELECT",
@@ -6,6 +8,7 @@ export const events = payload => dispatch=>{
 };
 
 export const model = payload => dispatch => {
+
 	dispatch(({
 		type: "SHOW_MODEL",
 		payload
@@ -13,23 +16,39 @@ export const model = payload => dispatch => {
 	);
 };
 
-export const fetchData = payload =>{
+export const fetchData = () =>{
 	return async dispatch => {
-		let fetchedData = await fetch(payload)
-					.then(resp =>resp.json())
-					.then(data=>data);
-	
+
+		const payload = await fetchCallData();
 		dispatch(({
 			type: "UPDATE_FETCH_EVENTS",
-			payload:fetchedData
+			payload
 		})
 		);
 	};
 };
 
-export const addEvent = payload =>dispatch => {
-	dispatch(({
-		type: "ADD_EVENT",
-		payload
-	}));
+export const addEvent = (payload) => {
+
+	return async dispatch => {
+		const x = await fetch('http://localhost:9000/events',{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			  },
+			body: JSON.stringify(payload)	
+		});
+
+		 let flg = await x;
+		 
+		 if(flg.ok){
+			const payload = await fetchCallData();
+	
+		dispatch(({
+			type: "UPDATE_FETCH_EVENTS",
+			payload
+		})
+		);
+		 }
+};
 };

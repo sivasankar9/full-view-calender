@@ -22,9 +22,8 @@ export default class EventCalender extends Component {
     }
     componentWillMount =()=>{
         
-        this.props.fetchData('http://localhost:9000/events');
+        this.props.fetchData();
 
-        console.log(this.props);
     }
 
     handlerClick = (title,eventType)=>{
@@ -39,7 +38,6 @@ export default class EventCalender extends Component {
     render() {
         return (<div className ='full-calender-container'>
                     <div>
-                        {console.log(this.props.events)}
                         <Checkbox
                             label="BILL"
                             value="bill"

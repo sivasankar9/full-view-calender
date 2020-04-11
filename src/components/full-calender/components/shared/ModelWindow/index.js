@@ -4,7 +4,7 @@ import React, { useRef,useState } from 'react';
 export default ({ modelShow, handlerClick }) => {
     const inputEl = useRef(null);
 
-    const [EventType,updateState] = useState('BILL');
+    const [EventType,updateState] = useState();
 
     const selectHandler = (e)=>{
 
@@ -22,9 +22,9 @@ export default ({ modelShow, handlerClick }) => {
 
                     <input type='text' ref={inputEl} />
 
-                    <select onBlur={selectHandler} onChange = {selectHandler}>
-                        <option value="Event">EVENT</option>
-                        <option value="Bill">BILL</option>
+                    <select defaultValue = 'BILL' onBlur={selectHandler} onChange = {selectHandler}>
+                        <option value = 'EVENT'>EVENT</option>
+                        <option value = 'BILL' >BILL</option>
                     </select>
 
                     <button onClick={() => {

@@ -1,4 +1,4 @@
-let initialState = false
+let initialState = false;
 
 export default (state = initialState,action)=>{
     if(action.type === "SHOW_MODEL"){
@@ -6,4 +6,4 @@ export default (state = initialState,action)=>{
 
     }
     return state;
-}
+};

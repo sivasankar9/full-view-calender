@@ -10,7 +10,6 @@ export default (state = initialState, action) => {
         };
     }
     if(action.type === 'UPDATE_FETCH_EVENTS'){
-        debugger;
         return {
             ...state,
             events:[...action.payload]

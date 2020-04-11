@@ -22,9 +22,9 @@ export default ({ modelShow, handlerClick }) => {
 
                     <input type='text' ref={inputEl} />
 
-                    <select value = 'BILL' onBlur={selectHandler} onChange = {selectHandler}>
-                        <option>EVENT</option>
-                        <option>BILL</option>
+                    <select defaultValue = 'BILL' onBlur={selectHandler} onChange = {selectHandler}>
+                        <option value = 'EVENT'>EVENT</option>
+                        <option value = 'BILL' >BILL</option>
                     </select>
 
                     <button onClick={() => {

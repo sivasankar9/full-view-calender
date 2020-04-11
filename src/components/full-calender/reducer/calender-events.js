@@ -1,20 +1,21 @@
 let initialState = {
-    events: [
-        { eventType: 'EVENT', title: 'ms birthday', date: '2020-04-20' },
-        { eventType: 'EVENT', title: 'ms birthday', date: '2020-04-21' },
-        { eventType: 'EVENT', title: ' ms birthday', date: '2020-04-22' },
-        { eventType: 'BILL', title: 'internet Bill', date: '2020-04-23' },
-        { eventType: 'BILL', title: 'internet Bill', date: '2020-04-24' },
-        { eventType: 'BILL', title: 'internet Bill', date: '2020-04-02' }
-    ]
-}
+    events: []
+};
 
 export default (state = initialState, action) => {
     if(action.type === 'ADD_EVENT'){
         return {
             ...state,
             events:[...state.events,action.payload]
-        }
+        };
     }
+    if(action.type === 'UPDATE_FETCH_EVENTS'){
+        debugger;
+        return {
+            ...state,
+            events:[...action.payload]
+        };
+    }
+
     return state;
-}
+};

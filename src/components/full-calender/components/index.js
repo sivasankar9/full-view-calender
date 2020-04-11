@@ -23,7 +23,6 @@ export default class EventCalender extends Component {
     componentWillMount =()=>{
         
         this.props.fetchData();
-
     }
 
     handlerClick = (title,eventType)=>{

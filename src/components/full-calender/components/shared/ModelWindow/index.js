@@ -7,7 +7,7 @@ export default ({ modelShow, handlerClick }) => {
     const [EventType,updateState] = useState();
 
     const selectHandler = (e)=>{
-
+        console.log(e.target.value);
         updateState(e.target.value);
 
     };

@@ -16,6 +16,7 @@ export const model = payload => dispatch => {
 	);
 };
 
+
 export const fetchData = () =>{
 	return async dispatch => {
 
@@ -51,4 +52,5 @@ export const addEvent = (payload) => {
 		);
 		 }
 };
+
 };

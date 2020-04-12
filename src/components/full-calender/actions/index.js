@@ -1,10 +1,12 @@
-import fetchCallData from '../components/shared/fetchData';
+import { getEventsData, postEventsData } from '../components/shared/service';
 
-export const events = payload => dispatch=>{
+export const events = payload => dispatch => {
+
 	dispatch({
 		type: "EVENTS_SELECT",
 		payload
 	});
+
 };
 
 export const model = payload => dispatch => {
@@ -17,10 +19,12 @@ export const model = payload => dispatch => {
 };
 
 
-export const fetchData = () =>{
+export const fetchData = () => {
 	return async dispatch => {
 
-		const payload = await fetchCallData();
+		const response = await getEventsData();
+		const payload = await response.json();
+		
 		dispatch(({
 			type: "UPDATE_FETCH_EVENTS",
 			payload
@@ -32,25 +36,22 @@ export const fetchData = () =>{
 export const addEvent = (payload) => {
 
 	return async dispatch => {
-		const x = await fetch('http://localhost:9000/events',{
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			  },
-			body: JSON.stringify(payload)	
-		});
+		
+		const response = await postEventsData(payload);
+		const data = await response.json();
 
-		 let flg = await x;
-		 
-		 if(flg.ok){
-			const payload = await fetchCallData();
-	
-		dispatch(({
-			type: "UPDATE_FETCH_EVENTS",
-			payload
-		})
-		);
-		 }
-};
+		if (data.ok) {
+			
+			const response = await getEventsData();
+			const payload = await response.json();
+
+
+			dispatch(({
+				type: "UPDATE_FETCH_EVENTS",
+				payload
+			})
+			);
+		}
+	};
 
 };

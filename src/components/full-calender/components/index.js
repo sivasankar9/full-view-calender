@@ -12,7 +12,7 @@ export default class EventCalender extends Component {
     date;
 
     handleEvents = (e) => {
-        this.props.events({ checked: e.target.checked, value: e.target.value });
+        this.props.events({ checked: e.target.checked, value: e.target.type });
     }
 
     handlerDateClick = (e)=>{
@@ -23,6 +23,8 @@ export default class EventCalender extends Component {
     componentWillMount =()=>{
         
         this.props.fetchData();
+
+        this.props.fetchCalenderEvents();
     }
 
     handlerClick = (title,eventType)=>{
@@ -35,18 +37,19 @@ export default class EventCalender extends Component {
         
     }
     render() {
+        console.log(this.props)
         return (<div className ='full-calender-container'>
                     <div>
-                        <Checkbox
-                            label="BILL"
+                        {
+                            this.props.mynewCalenderEvents.map(item=><Checkbox 
+                            key = {item._id}
                             value="bill"
                             handleEvents={this.handleEvents}
-                            checkedFlg={this.props.calendercriterai.bill} />
-                        <Checkbox
-                            label="EVENT"
-                            value="event"
-                            handleEvents={this.handleEvents}
-                            checkedFlg={this.props.calendercriterai.event} />
+                            label = {item.type} 
+                            checkedFlg={item.isSelected} 
+                            ></Checkbox>)
+                        }
+                       
                     </div>
                     <div>
                     <FullCalendar

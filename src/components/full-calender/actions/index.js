@@ -1,4 +1,4 @@
-import { getEventsData, postEventsData } from '../components/shared/service';
+import { getEventsData, postEventsData,getCalenderEventsData } from '../components/shared/service';
 
 export const events = payload => dispatch => {
 
@@ -27,6 +27,22 @@ export const fetchData = () => {
 		
 		dispatch(({
 			type: "UPDATE_FETCH_EVENTS",
+			payload
+		})
+		);
+	};
+};
+
+export const fetchCalenderEvents = () => {
+	return async dispatch => {
+
+		const response = await getCalenderEventsData();
+		const payload = await response.json();
+
+		debugger;
+		
+		dispatch(({
+			type: "FETCH_CALENDER_EVENTS",
 			payload
 		})
 		);

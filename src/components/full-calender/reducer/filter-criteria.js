@@ -1,7 +1,4 @@
-const intialstate = {
-    bill: true,
-    event: true
-};
+const intialstate = []
 
 export default (state = intialstate, action) => {
     if (action.type === "EVENTS_SELECT") {

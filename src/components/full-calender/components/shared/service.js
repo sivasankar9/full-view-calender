@@ -6,6 +6,12 @@ export const getEventsData =async () => {
     return myData;
 };
 
+export const getCalenderEventsData =async () => {
+
+    const myData = await fetchCallData('new-calender');
+    return myData;
+};
+
 export const postEventsData =async (payload) => {
 
     const myData = await fetchCallData('events',{

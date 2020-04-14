@@ -1,5 +1,5 @@
 
-import {addEvent,events,fetchData,model} from './actions';
+import {addCreateEvent,addEvent,events,fetchData,model,fetchCalenderEvents} from './actions';
 import EventCalender from './components';
 import { connect } from 'react-redux';
 
@@ -20,7 +20,8 @@ const filterEvents = (criteria, events) => {
 const mapStateToProps = state => ({
     calenderdata: filterEvents(state.fullCalender.filterCriteria, state.fullCalender.calenderEvents.events),
     calendercriterai: state.fullCalender.filterCriteria,
-    modelWindowCalender:state.fullCalender.calenderModelWindow
+    modelWindowCalender:state.fullCalender.calenderModelWindow,
+    newCalender:state.fullCalender.newCalenderEvents
 });
 
-export default connect(mapStateToProps, {events,model,addEvent,fetchData})(EventCalender);
+export default connect(mapStateToProps, {events,model,addEvent,fetchData,fetchCalenderEvents,addCreateEvent})(EventCalender);

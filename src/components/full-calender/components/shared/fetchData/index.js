@@ -1,4 +1,6 @@
-let postApi = 'http://localhost:9000';
+// let postApi = 'http://localhost:9000';
+
+let eventsApi = 'https://new-calender-api.herokuapp.com';
 
 export default (url, options={}) => {
 
@@ -9,7 +11,7 @@ export default (url, options={}) => {
           ...options
     };
 
-    let y = fetch(`${postApi}/${url}`, headers )
+    let y = fetch(`${eventsApi}/${url}`, headers )
         .then(resp =>resp);
         return y;
 };

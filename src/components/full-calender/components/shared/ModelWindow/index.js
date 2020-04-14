@@ -1,14 +1,14 @@
 import './style.css';
-import React, { useRef,useState } from 'react';
+import React, { useRef, useState } from 'react';
 
-export default ({ modelShow, handlerClick }) => {
+export default ({ newCalender, modelShow, handlerClick }) => {
     const inputEl = useRef(null);
 
-    const [EventType,updateState] = useState();
+    const [ObjId, updateObjId] = useState();
 
-    const selectHandler = (e)=>{
+    const selectHandler = (e) => {
         console.log(e.target.value);
-        updateState(e.target.value);
+        updateObjId(e.target.value);
 
     };
 
@@ -21,15 +21,16 @@ export default ({ modelShow, handlerClick }) => {
                 <form>
 
                     <input type='text' ref={inputEl} />
-
-                    <select defaultValue = 'BILL' onBlur={selectHandler} onChange = {selectHandler}>
-                        <option value = 'EVENT'>EVENT</option>
-                        <option value = 'BILL' >BILL</option>
+                    <select defaultValue={newCalender[1].ObjId} onBlur={selectHandler} onChange={selectHandler}>
+                        {
+                            newCalender.map(item => <option value = {item.ObjId} key = {item.id}>{item.label}</option>)
+                        }
                     </select>
 
                     <button onClick={() => {
-                        if (inputEl.current.value !== '') {
-                            handlerClick(inputEl.current.value,EventType);
+                        const inputStr = inputEl.current.value
+                        if (inputStr !== '') {
+                            handlerClick(inputStr, ObjId);
                         }
                     }
                     }>SAVE</button>

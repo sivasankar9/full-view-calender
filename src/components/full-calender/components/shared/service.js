@@ -20,3 +20,12 @@ export const postEventsData =async (payload) => {
     });
     return myData;
 };
+
+export const postNewCreateEventsData =async (payload) => {
+
+    const myData = await fetchCallData('new-calender',{
+        method: 'POST',
+        body: JSON.stringify(payload)	
+    });
+    return myData;
+};

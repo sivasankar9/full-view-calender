@@ -11,58 +11,81 @@ import interactionPlugin from '@fullcalendar/interaction';
 export default class EventCalender extends Component {
     date;
 
+    myRef = React.createRef();
+
     handleEvents = (e) => {
         this.props.events({ checked: e.target.checked, value: e.target.type });
     }
 
-    handlerDateClick = (e)=>{
+    handlerDateClick = (e) => {
         this.date = e.dateStr;
         this.props.model(!this.props.modelWindowCalender);
-        
+
     }
-    componentWillMount =()=>{
-        
+    componentWillMount = () => {
+
         this.props.fetchData();
 
         this.props.fetchCalenderEvents();
     }
 
-    handlerClick = (title,eventType)=>{
-        let myDate = this.date;
+    handlerCreateEvent = (e) => {
+        const ObjId = Math.random().toString(36).substring(7);
+
+        this.props.addCreateEvent({
+            label:e.current.value,
+            isSelected:true,
+            ObjId})
+
+        e.current.value = '';
+        
+    }
+
+    handlerClick = (title, eventType) => {
+
+        const selectedDate = this.date;
         this.props.model(false);
         this.props.addEvent({
-         eventType, title, date:myDate }
+            eventType, title, date: selectedDate
+        }
 
         );
-        
+
     }
     render() {
         console.log(this.props)
-        return (<div className ='full-calender-container'>
-                    <div>
-                        {
-                            this.props.mynewCalenderEvents.map(item=><Checkbox 
-                            key = {item._id}
-                            value="bill"
-                            handleEvents={this.handleEvents}
-                            label = {item.type} 
-                            checkedFlg={item.isSelected} 
-                            ></Checkbox>)
-                        }
-                       
-                    </div>
-                    <div>
-                    <FullCalendar
-                            dateClick = {this.handlerDateClick}
-                            plugins={[dayGridPlugin, interactionPlugin]}
-                            events={this.props.calenderdata} />
-                    </div>
-                        
-                        <ModelWindow 
-                        modelShow = {this.props.modelWindowCalender}
-                        handlerClick = {this.handlerClick}
-                        />
-                </div>);
+
+        return (<div className='full-calender-container'>
+            <div>
+                {
+                    this.props.newCalender.map(item => <Checkbox
+                        key={item.ObjId}
+                        value={item.label}
+                        handleEvents={this.handleEvents}
+                        label={item.label}
+                        checkedFlg={item.isSelected}
+                    ></Checkbox>)
+                }
+
+            </div>
+            <div>
+                <h4>Other calenders</h4>
+                <input type="text" ref = {this.myRef}/>
+                <button onClick={() => this.handlerCreateEvent(this.myRef)}>CREATE</button>
+            </div>
+            <div>
+                <FullCalendar
+                    dateClick={this.handlerDateClick}
+                    plugins={[dayGridPlugin, interactionPlugin]}
+                    events={this.props.calenderdata} />
+            </div>
+
+            <ModelWindow
+                modelShow={this.props.modelWindowCalender}
+                handlerClick={this.handlerClick}
+                newCalender = {this.props.newCalender}
+            />
+        </div>);
     }
 }
 

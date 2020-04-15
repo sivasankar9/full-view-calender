@@ -24,6 +24,9 @@
     "eslint": "^6.8.0",
     "react-scripts": "latest"
   },
+  "engines": {
+    "node": "12.16.x"
+  },
   "browserslist": {
     "production": [
       ">0.2%",

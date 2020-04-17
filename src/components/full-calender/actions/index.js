@@ -1,13 +1,47 @@
-import { getEventsData, postEventsData,getCalenderEventsData,postNewCreateEventsData } from '../components/shared/service';
+import { getCalenderEventsData, getEventsData,postEventsData,postNewCreateEventsData,updateNewCalender } from '../components/shared/service';
 
-export const events = payload => dispatch => {
+export const updateCheckbox = payload =>{
+	return dispatch => {
+		
+		// debugger;
+		// const response = await updateNewCalender(payload);
+		// const data = await response;
+		// console.log(data)
 
-	dispatch({
-		type: "EVENTS_SELECT",
-		payload
-	});
+		// if (data.ok) {
+			
+		// 	const response = await getCalenderEventsData();
+		// 	const payload = await response.json();
 
-};
+		// 	debugger;
+		// 	dispatch(({
+		// 		type: "FETCH_CALENDER_EVENTS",
+		// 		payload
+		// 	})
+		// 	);
+
+
+		//api call update objectId with isChecked;
+		if(!payload.ischecked){
+			debugger;
+			dispatch({
+				type: "REMOVE_NEW_CALENDER",
+				payload
+			});
+		} else{
+			dispatch({
+				type: "ADD_NEW_CALENDER",
+				payload
+			});
+		}
+			
+		dispatch({
+			type: "UPDATE_NEW_CALENDER",
+			payload
+		});
+	
+	};
+}; 
 
 export const model = payload => dispatch => {
 
@@ -17,7 +51,6 @@ export const model = payload => dispatch => {
 	})
 	);
 };
-
 
 export const fetchData = () => {
 	return async dispatch => {
@@ -44,6 +77,12 @@ export const fetchCalenderEvents = () => {
 			payload
 		})
 		);
+
+		//cleanup needed
+		dispatch({
+			type: "ALL_CALENDER_EVENTS",
+			payload
+		});
 	};
 };
 
@@ -58,7 +97,6 @@ export const addEvent = (payload) => {
 			
 			const response = await getEventsData();
 			const payload = await response.json();
-
 
 			dispatch(({
 				type: "UPDATE_FETCH_EVENTS",
@@ -87,6 +125,11 @@ export const addCreateEvent = (payload) => {
 				payload
 			})
 			);
+				//cleanup needed
+		dispatch({
+			type: "ALL_CALENDER_EVENTS",
+			payload
+		});
 		}
 	};
 

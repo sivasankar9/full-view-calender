@@ -29,3 +29,17 @@ export const postNewCreateEventsData =async (payload) => {
     });
     return myData;
 };
+
+export const updateNewCalender =async (payload) => {
+
+    const myData = await fetchCallData('update-new-calender',{
+        method: 'POST',
+        body: JSON.stringify(payload)	
+    });
+    return myData;
+};
+export const getNewCalender =async () => {
+
+    const myData = await fetchCallData('update-new-calender');
+    return myData;
+};

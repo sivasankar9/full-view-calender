@@ -17,6 +17,10 @@ export default class EventCalender extends Component {
         debugger;
         this.props.updateCheckbox({ label: 'e.target.label', ischecked: e.target.checked, ObjId: e.target.value });
     }
+    handleCloseButton = ()=>{
+        this.props.model(!this.props.modelWindowCalender);
+
+    }
 
     handlerDateClick = (e) => {
         this.date = e.dateStr;
@@ -58,7 +62,7 @@ export default class EventCalender extends Component {
 
     }
     render() {
-        console.log(this.props);
+        console.log('llllllllllllll',this.props.newCalender);
 
         return (<div className='full-calender-container'>
             <div>
@@ -73,6 +77,7 @@ export default class EventCalender extends Component {
                 }
 
             </div>
+            
             <div>
                 <h4>Other calenders</h4>
                 <input type="text" ref = {this.myRef}/>
@@ -84,11 +89,13 @@ export default class EventCalender extends Component {
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={this.props.calenderdata} />
             </div>
-
-            <ModelWindow
+            
+                <ModelWindow
                 modelShow={this.props.modelWindowCalender}
                 handlerClick={this.handlerClick}
                 newCalender = {this.props.newCalender}
+                hasEvents = {this.props.newCalender.length>0}
+                handleCloseButton = {this.handleCloseButton}
             />
         </div>);
     }

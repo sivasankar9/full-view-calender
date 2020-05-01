@@ -7,6 +7,7 @@ import ModelWindow from './shared/ModelWindow';
 import React from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import Loader from './shared/loader';
 
 export default class EventCalender extends Component {
     date;

@@ -21,7 +21,7 @@ export default ({ hasEvents, ...props }) => {
 
 const ModalMessage = (props) => {
     
-    return <div className='model-window'>
+    return <div className='model-window-title'>
         <div className='model-window-title'>
 
             <h4>OOOOOPPPPSSSSSSSSSS NO EVENTS CREATE</h4>
@@ -42,6 +42,13 @@ const ModalForm = (props) => {
 
     };
 
+    const [priority,updatePriority] = useState();
+
+    const priorityhandler=(e)=>{
+        console.log(e.target.value);
+        updatePriority(e.target.value);
+    };
+
     return <div>
         <form>
 
@@ -49,6 +56,12 @@ const ModalForm = (props) => {
             <select onBlur={selectHandler} onChange={selectHandler}>
                 {
                     props.newCalender.map(item => <option value={item.ObjId} key={item.id}>{item.label}</option>)
+                }
+            </select>
+
+            <select onBlur={selectHandler} onChange = {priorityhandler}>
+                {
+                    props.priorityEvents.map(item => <option value={item.ObjId} key={item.id}>{item.label}</option>)
                 }
             </select>
 

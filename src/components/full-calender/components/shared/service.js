@@ -43,3 +43,9 @@ export const getNewCalender =async () => {
     const myData = await fetchCallData('update-new-calender');
     return myData;
 };
+
+export const getProrityData =async () => {
+
+    const myData = await fetchCallData('priority-events');
+    return myData;
+};

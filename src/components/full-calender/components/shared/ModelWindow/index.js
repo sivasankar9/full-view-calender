@@ -44,7 +44,6 @@ const ModalForm = (props) => {
 
     return <div>
         <form>
-
             <input type='text' ref={inputEl} />
             <select onBlur={selectHandler} onChange={selectHandler}>
                 {

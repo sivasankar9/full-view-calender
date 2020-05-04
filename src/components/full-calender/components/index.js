@@ -63,7 +63,6 @@ export default class EventCalender extends Component {
 
     }
     render() {
-        console.log('llllllllllllll',this.props.newCalender);
 
         return (<div className='full-calender-container'>
             <div>

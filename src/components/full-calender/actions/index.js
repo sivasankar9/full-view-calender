@@ -25,6 +25,25 @@ export const updateCheckbox = payload =>{
 	};
 }; 
 
+export const priorityUpdateCheckbox = payload=>dispatch=>{
+	if(!payload.isSelected){
+		dispatch({
+			type:actions.REMOVE_PRIORITY,
+			payload
+		});
+	} else{
+		dispatch({
+			type:actions.ADD_PRIORITY,
+			payload
+		});
+	}
+	dispatch({
+		type:actions.UPDATE_PRIORITY_CHECKBOX,
+		payload
+	});
+	
+};
+
 export const fetchProrityEvents = payload=>{
 	return async dispatch=>{
 		const response = await getProrityData();
@@ -34,6 +53,7 @@ export const fetchProrityEvents = payload=>{
 			type:actions.PRIROTY_STATUS,
 			payload
 		});
+		
 	};
 
 };
@@ -74,7 +94,7 @@ export const fetchCalenderEvents = () => {
 		);
 
 		dispatch({
-			type: "ALL_CALENDER_EVENTS",
+			type: "ALL_NEW_CALENDER_EVENTS",
 			payload
 		});
 	};

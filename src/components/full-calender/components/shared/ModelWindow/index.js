@@ -34,19 +34,22 @@ const ModalForm = (props) => {
 
     const inputEl = useRef(null);
 
-    const [ObjId, updateObjId] = useState();
+    const initialState = {
+        ObjId:0,
+        priorityId:0
+    };
+
+    const [modelState, updateModelState] = useState(initialState);
 
     const selectHandler = (e) => {
-        console.log(e.target.value);
-        updateObjId(e.target.value);
+        console.log("selectHandler",e.target.value);
+        updateModelState({...modelState,ObjId:e.target.value});
 
     };
 
-    const [priority,updatePriority] = useState();
-
     const priorityhandler=(e)=>{
-        console.log(e.target.value);
-        updatePriority(e.target.value);
+        console.log("priorityhandler",e.target.value);
+        updateModelState({...modelState,priorityId:e.target.value});
     };
 
     return <div>
@@ -59,16 +62,16 @@ const ModalForm = (props) => {
                 }
             </select>
 
-            <select onBlur={selectHandler} onChange = {priorityhandler}>
+            <select onBlur={priorityhandler} onChange = {priorityhandler}>
                 {
-                    props.priorityEvents.map(item => <option value={item.ObjId} key={item.id}>{item.label}</option>)
+                    props.priorityEvents.map(item => <option value={item.priorityId} key={item.id}>{item.label}</option>)
                 }
             </select>
 
             <button onClick={() => {
                 const inputStr = inputEl.current.value;
                 if (inputStr !== '') {
-                    props.handlerClick(inputStr, ObjId);
+                    props.handlerClick(inputStr, modelState.ObjId,modelState.priorityId);
                 }
             }
             }>SAVE</button>

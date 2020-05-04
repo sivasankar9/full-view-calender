@@ -4,6 +4,7 @@ import {combineReducers} from 'redux';
 import filterCriteria from './filter-criteria';
 import newCalenderEvents from './new-calender-events';
 import priorityEvents from './priority';
+import priorityFilterCriteria from './priority-filter-criteria';
 
 
 export default combineReducers({
@@ -11,6 +12,7 @@ export default combineReducers({
     filterCriteria,
     calenderModelWindow,
     newCalenderEvents,
-    priorityEvents
+    priorityEvents,
+    priorityFilterCriteria
 
 });

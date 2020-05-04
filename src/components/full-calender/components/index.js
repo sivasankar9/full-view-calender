@@ -46,13 +46,16 @@ export default class EventCalender extends Component {
         e.current.value = '';
         
     }
+    handlerPriority = (e)=>{
+        
+        this.props.priorityUpdateCheckbox({priorityId:e.target.value,isSelected:e.target.checked});
+    }
 
-    handlerClick = (title, eventType) => {
-
+    handlerClick = (title, eventType,priorityId) => {
         const selectedDate = this.date;
         this.props.model(false);
         this.props.addEvent({
-            eventType, title, date: selectedDate
+            eventType, title, date: selectedDate,priorityId
         }
 
         );
@@ -79,7 +82,11 @@ export default class EventCalender extends Component {
                 {
                     this.props.priorityEvents.map(item=><div>
                     <PriorityCheackBox
+                    key = {item.priorityId}
+                    value = {item.priorityId}
                     label = {item.label}
+                    handlerPriority = {(e)=>this.handlerPriority(e)}
+                    isSelected = {item.isSelected}
                     ></PriorityCheackBox>
                     </div>)
                 }

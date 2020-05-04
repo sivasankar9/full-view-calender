@@ -1,8 +1,12 @@
 import React from 'react';
 
-export default ({label})=>{
+export default ({label,handlerPriority,isSelected,value})=>{
 
     return (<div>
-        <input type = "checkbox"/>{label}
+        <input type = "checkbox"
+         onChange = {(e)=>handlerPriority(e)}
+         checked = {isSelected}
+         value = {value}/>{label}
+         
         </div>);
 };

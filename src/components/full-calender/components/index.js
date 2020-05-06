@@ -35,16 +35,12 @@ export default class EventCalender extends Component {
         this.props.fetchCalenderEvents();
     }
 
-    componentWillReceiveProps(prevProps,nextProps){
-    console.log("componentWillReceiveProps",prevProps);
-    }
-
     handlerCreateEvent = (e) => {
         const ObjId = Math.random().toString(36).substring(7);
 
         this.props.addCreateEvent({
-            label:e.current.value,
-            isSelected:true,
+            label: e.current.value,
+            isSelected: true,
             ObjId});
 
         e.current.value = '';
@@ -54,6 +50,7 @@ export default class EventCalender extends Component {
     handlerClick = (title, eventType) => {
 
         const selectedDate = this.date;
+
         this.props.model(false);
         this.props.addEvent({
             eventType, title, date: selectedDate
@@ -80,7 +77,7 @@ export default class EventCalender extends Component {
             
             <div>
                 <h4>Other calenders</h4>
-                <input type="text" ref = {this.myRef}/>
+                <input type='text' ref = {this.myRef}/>
                 <button onClick={() => this.handlerCreateEvent(this.myRef)}>CREATE</button>
             </div>
             <div>

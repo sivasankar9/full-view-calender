@@ -1,7 +1,7 @@
 let initialState = false;
 
-export default (state = initialState,action)=>{
-    if(action.type === "SHOW_MODEL"){
+export default (state = initialState, action)=>{
+    if (action.type === "SHOW_MODEL") {
         return action.payload;
 
     }

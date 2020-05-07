@@ -4,10 +4,10 @@ import Checkbox from './shared/check-box';
 import { Component } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import ModelWindow from './shared/ModelWindow';
+import PriorityCheackBox from './shared/priority-checkBox';
 import React from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import Loader from './shared/loader';
 
 export default class EventCalender extends Component {
     date;
@@ -15,12 +15,10 @@ export default class EventCalender extends Component {
     myRef = React.createRef();
 
     handleEvents = (e) => {
-        debugger;
         this.props.updateCheckbox({ label: 'e.target.label', ischecked: e.target.checked, ObjId: e.target.value });
     }
     handleCloseButton = ()=>{
         this.props.model(!this.props.modelWindowCalender);
-
     }
 
     handlerDateClick = (e) => {
@@ -33,34 +31,35 @@ export default class EventCalender extends Component {
         this.props.fetchData();//events
 
         this.props.fetchCalenderEvents();
-    }
 
-    componentWillReceiveProps(prevProps,nextProps){
-    console.log("componentWillReceiveProps",prevProps);
+        this.props.fetchProrityEvents();
     }
 
     handlerCreateEvent = (e) => {
         const ObjId = Math.random().toString(36).substring(7);
 
         this.props.addCreateEvent({
-            label:e.current.value,
-            isSelected:true,
+            label: e.current.value,
+            isSelected: true,
             ObjId});
 
         e.current.value = '';
         
     }
+    handlerPriority = (e)=>{
+        
+        this.props.priorityUpdateCheckbox({priorityId: e.target.value, isSelected: e.target.checked});
+    }
 
-    handlerClick = (title, eventType) => {
-
+    handlerClick = (title, eventType, priorityId) => {
         const selectedDate = this.date;
+
         this.props.model(false);
         this.props.addEvent({
-            eventType, title, date: selectedDate
+            eventType, title, date: selectedDate, priorityId
         }
 
         );
-
     }
     render() {
 
@@ -77,12 +76,27 @@ export default class EventCalender extends Component {
                 }
 
             </div>
+
+            <div className = 'priority'>
+                {
+                    this.props.priorityEvents.map(item=><div>
+                    <PriorityCheackBox
+                    key = {item.priorityId}
+                    value = {item.priorityId}
+                    label = {item.label}
+                    handlerPriority = {(e)=>this.handlerPriority(e)}
+                    isSelected = {item.isSelected}
+                    ></PriorityCheackBox>
+                    </div>)
+                }
+            </div>
             
             <div>
                 <h4>Other calenders</h4>
-                <input type="text" ref = {this.myRef}/>
+                <input type='text' ref = {this.myRef}/>
                 <button onClick={() => this.handlerCreateEvent(this.myRef)}>CREATE</button>
             </div>
+
             <div>
                 <FullCalendar
                     dateClick={this.handlerDateClick}
@@ -94,6 +108,7 @@ export default class EventCalender extends Component {
                 modelShow={this.props.modelWindowCalender}
                 handlerClick={this.handlerClick}
                 newCalender = {this.props.newCalender}
+                priorityEvents = {this.props.priorityEvents}
                 hasEvents = {this.props.newCalender.length>0}
                 handleCloseButton = {this.handleCloseButton}
             />

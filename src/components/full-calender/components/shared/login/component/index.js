@@ -61,21 +61,7 @@ export default (props) => {
         </form>
     );
 };
-{/* <div> */ }
-//     <label>
-//         userName
-//     </label>
-//     <input type = "text"></input>
 
-//     <label>
-//         password
-//     </label>
-//     <input type = "password"></input>
-
-//     <button onClick = {()=>{
-//         props.login({username:"siva",password:"1254"})
-//     }}>login</button>
-//     </div>
 
 
 

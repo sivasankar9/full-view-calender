@@ -9,7 +9,7 @@ const filterEvents = (criteria, priorityCriteria, events) => {
         return acc.concat(events.filter(data => data.eventType === item.ObjId));
     }, []);
 
-    if (priorityCriteria.length>0) {
+    if (priorityCriteria.length > 0) {
         let xc = filetrCalenderEvents.reduce((acc, item) => {
             let x = [];
 
@@ -20,7 +20,7 @@ const filterEvents = (criteria, priorityCriteria, events) => {
             });
             return acc.concat(x);
         }, []);
-    
+
         return xc;
     } else {
         return filetrCalenderEvents;

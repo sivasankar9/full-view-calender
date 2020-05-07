@@ -1,4 +1,5 @@
-import { getCalenderEventsData, getEventsData, postEventsData, postNewCreateEventsData} from '../components/shared/service';
+import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, postNewCreateEventsData} from '../components/shared/service';
+import actions from '../actions-list';
 
 export const updateCheckbox = payload =>{
 	return dispatch => {
@@ -22,6 +23,39 @@ export const updateCheckbox = payload =>{
 	
 	};
 }; 
+
+export const priorityUpdateCheckbox = payload=>dispatch=>{
+	if (!payload.isSelected) {
+		dispatch({
+			type: actions.REMOVE_PRIORITY,
+			payload
+		});
+	} else {
+		dispatch({
+			type: actions.ADD_PRIORITY,
+			payload
+		});
+	}
+	dispatch({
+		type: actions.UPDATE_PRIORITY_CHECKBOX,
+		payload
+	});
+	
+};
+
+export const fetchProrityEvents = payload=>{
+	return async dispatch=>{
+		const response = await getProrityData();
+		const payload = await response.json();
+
+		dispatch({
+			type: actions.PRIROTY_STATUS,
+			payload
+		});
+		
+	};
+
+};
 
 export const model = payload => dispatch => {
 
@@ -59,7 +93,7 @@ export const fetchCalenderEvents = () => {
 		);
 
 		dispatch({
-			type: "ALL_CALENDER_EVENTS",
+			type: "ALL_NEW_CALENDER_EVENTS",
 			payload
 		});
 	};

@@ -21,7 +21,7 @@ export default ({ hasEvents, ...props }) => {
 
 const ModalMessage = (props) => {
     
-    return <div className='model-window'>
+    return <div className='model-window-title'>
         <div className='model-window-title'>
 
             <h4>OOOOOPPPPSSSSSSSSSS NO EVENTS CREATE</h4>
@@ -34,16 +34,27 @@ const ModalForm = (props) => {
 
     const inputEl = useRef(null);
 
-    const [ObjId, updateObjId] = useState();
+    const initialState = {
+        ObjId: 0,
+        priorityId: 0
+    };
+
+    const [modelState, updateModelState] = useState(initialState);
 
     const selectHandler = (e) => {
-        console.log(e.target.value);
-        updateObjId(e.target.value);
 
+        updateModelState({...modelState, ObjId: e.target.value});
+
+    };
+
+    const priorityhandler=(e)=>{
+
+        updateModelState({...modelState, priorityId: e.target.value});
     };
 
     return <div>
         <form>
+
             <input type='text' ref={inputEl} />
             <select onBlur={selectHandler} onChange={selectHandler}>
                 {
@@ -51,17 +62,21 @@ const ModalForm = (props) => {
                 }
             </select>
 
+            <select onBlur={priorityhandler} onChange = {priorityhandler}>
+                {
+                    props.priorityEvents.map(item => <option value={item.priorityId} key={item.id}>{item.label}</option>)
+                }
+            </select>
+
             <button onClick={() => {
                 const inputStr = inputEl.current.value;
 
                 if (inputStr !== '') {
-                    props.handlerClick(inputStr, ObjId);
+                    props.handlerClick(inputStr, modelState.ObjId, modelState.priorityId);
                 }
             }
             }>SAVE</button>
             <button>CLOSE</button>
-
-
         </form>
     </div>;
 };

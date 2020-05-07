@@ -49,3 +49,10 @@ export const getNewCalender =async () => {
 
     return myData;
 };
+
+export const getProrityData =async () => {
+
+    const myData = await fetchCallData('priority-events');
+
+    return myData;
+};

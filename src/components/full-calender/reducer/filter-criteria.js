@@ -1,7 +1,7 @@
-const intialstate = [];//18
+const intialstate = [];//2
 
 export default (state = intialstate, action) => {
-    if (action.type === "ALL_CALENDER_EVENTS") {
+    if (action.type === "ALL_NEW_CALENDER_EVENTS") {
         return action.payload;
     }
     if (action.type === "ADD_NEW_CALENDER") {
@@ -12,4 +12,4 @@ export default (state = intialstate, action) => {
         return state.filter(item => (item.ObjId !== action.payload.ObjId));
     }
     return state;
-};
+}; 

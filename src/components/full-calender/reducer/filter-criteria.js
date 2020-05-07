@@ -12,4 +12,4 @@ export default (state = intialstate, action) => {
         return state.filter(item => (item.ObjId !== action.payload.ObjId));
     }
     return state;
-};
+}; 

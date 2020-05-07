@@ -8,7 +8,6 @@ import PriorityCheackBox from './shared/priority-checkBox';
 import React from 'react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import Loader from './shared/loader';
 
 export default class EventCalender extends Component {
     date;
@@ -40,8 +39,8 @@ export default class EventCalender extends Component {
         const ObjId = Math.random().toString(36).substring(7);
 
         this.props.addCreateEvent({
-            label:e.current.value,
-            isSelected:true,
+            label: e.current.value,
+            isSelected: true,
             ObjId});
 
         e.current.value = '';
@@ -49,21 +48,20 @@ export default class EventCalender extends Component {
     }
     handlerPriority = (e)=>{
         
-        this.props.priorityUpdateCheckbox({priorityId:e.target.value,isSelected:e.target.checked});
+        this.props.priorityUpdateCheckbox({priorityId: e.target.value, isSelected: e.target.checked});
     }
 
-    handlerClick = (title, eventType,priorityId) => {
+    handlerClick = (title, eventType, priorityId) => {
         const selectedDate = this.date;
+
         this.props.model(false);
         this.props.addEvent({
-            eventType, title, date: selectedDate,priorityId
+            eventType, title, date: selectedDate, priorityId
         }
 
         );
-
     }
     render() {
-        console.log(this.props);
 
         return (<div className='full-calender-container'>
             <div>
@@ -79,7 +77,7 @@ export default class EventCalender extends Component {
 
             </div>
 
-            <div className = "priority">
+            <div className = 'priority'>
                 {
                     this.props.priorityEvents.map(item=><div>
                     <PriorityCheackBox
@@ -95,7 +93,7 @@ export default class EventCalender extends Component {
             
             <div>
                 <h4>Other calenders</h4>
-                <input type="text" ref = {this.myRef}/>
+                <input type='text' ref = {this.myRef}/>
                 <button onClick={() => this.handlerCreateEvent(this.myRef)}>CREATE</button>
             </div>
 

@@ -1,16 +1,16 @@
-import { getCalenderEventsData, getEventsData,postEventsData,postNewCreateEventsData,getProrityData} from '../components/shared/service';
+import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, postNewCreateEventsData} from '../components/shared/service';
 import actions from '../actions-list';
 
 export const updateCheckbox = payload =>{
 	return dispatch => {
 		
 		//api call update objectId with isChecked;
-		if(!payload.ischecked){
+		if (!payload.ischecked) {
 			dispatch({
 				type: "REMOVE_NEW_CALENDER",
 				payload
 			});
-		} else{
+		} else {
 			dispatch({
 				type: "ADD_NEW_CALENDER",
 				payload
@@ -26,19 +26,19 @@ export const updateCheckbox = payload =>{
 }; 
 
 export const priorityUpdateCheckbox = payload=>dispatch=>{
-	if(!payload.isSelected){
+	if (!payload.isSelected) {
 		dispatch({
-			type:actions.REMOVE_PRIORITY,
+			type: actions.REMOVE_PRIORITY,
 			payload
 		});
-	} else{
+	} else {
 		dispatch({
-			type:actions.ADD_PRIORITY,
+			type: actions.ADD_PRIORITY,
 			payload
 		});
 	}
 	dispatch({
-		type:actions.UPDATE_PRIORITY_CHECKBOX,
+		type: actions.UPDATE_PRIORITY_CHECKBOX,
 		payload
 	});
 	
@@ -50,7 +50,7 @@ export const fetchProrityEvents = payload=>{
 		const payload = await response.json();
 
 		dispatch({
-			type:actions.PRIROTY_STATUS,
+			type: actions.PRIROTY_STATUS,
 			payload
 		});
 		
@@ -128,6 +128,7 @@ export const addCreateEvent = (payload) => {
 		
 		const response = await postNewCreateEventsData(payload);
 		const data = await response.json();
+
 		if (data.ok) {
 			
 			const response = await getCalenderEventsData();

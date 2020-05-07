@@ -4,15 +4,20 @@ import { connect } from "react-redux";
 
 const AuthRoute = props => {
 
-  const {isLogin} = props;
+  const { data } = props;
 
-  if (isLogin) return <Redirect to='/calender' />;
-  
+  if (data.isLogin) {
+
+    localStorage.setItem("accessToken", data.accessToken);
+
+    return <Redirect to='/calender' />;
+  }
+
   return <Route {...props} />;
 };
 
-const mapStateToProps = state =>  ({
-    isLogin: state.loginCalender.login
+const mapStateToProps = state => ({
+  data: state.loginCalender.login
 });
 
 export default connect(mapStateToProps)(AuthRoute);

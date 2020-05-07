@@ -1,13 +1,22 @@
-import React, {Component} from 'react';
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import AuthRoute from './components/full-calender/components/shared/auth-route';
 import EventCalender from './components/full-calender';
 import Loader from './components/full-calender/components/shared/loader';
-class App extends Component {
+import Login from './components/full-calender/components/shared/login';
+import React from 'react';
 
-    render() {
-        return (<div>
+export default ({ history }) =>
+    <Router history={history}>
+        <div>
             <Loader />
-            <EventCalender />
-            </div>);
-    }
-}
-export default App;
+
+            <AuthRoute path='/' >
+                <Login />
+            </AuthRoute>
+            
+    <Route strict path='/calender' component={EventCalender} />
+        </div>
+    </Router>;
+
+
+

@@ -4,13 +4,15 @@ import App from './App';
 import {Provider} from 'react-redux';
 import React from 'react';
 import calenderEvents from './components/full-calender/reducer';
+import loginCalender from './components/full-calender/components/shared/login/reducer';
 import { render } from 'react-dom';
 import thunkMiddleware from 'redux-thunk';
  
 
 let store = createStore(combineReducers({
-    fullCalender:calenderEvents,
-}),compose(
+    fullCalender: calenderEvents,
+    loginCalender: loginCalender
+}), compose(
       applyMiddleware(thunkMiddleware),
       window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
@@ -18,4 +20,4 @@ let store = createStore(combineReducers({
 
 render(<Provider store = {store}>
     <App />
-    </Provider>,document.getElementById('root'));
+    </Provider>, document.getElementById('root'));

@@ -4,7 +4,6 @@ import actions from '../actions-list';
 export const updateCheckbox = payload =>{
 	return dispatch => {
 		
-		//api call update objectId with isChecked;
 		if (!payload.ischecked) {
 			dispatch({
 				type: "REMOVE_NEW_CALENDER",

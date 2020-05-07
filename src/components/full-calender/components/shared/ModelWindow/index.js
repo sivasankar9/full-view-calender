@@ -6,15 +6,15 @@ export default ({ hasEvents, ...props }) => {
     return props.modelShow ?
         <div className='model-window'>
 
-            <div className="model-window-title">
+            <div className='model-window-title'>
                 <h4>title</h4>
             </div>
-            <div className="body">
+            <div className='body'>
                 {
                     hasEvents ? <ModalForm {...props} /> : <ModalMessage {...props}/>
                 }
             </div>
-            <div className="footer"></div>
+            <div className='footer'></div>
 
         </div> : null;
 };
@@ -53,6 +53,7 @@ const ModalForm = (props) => {
 
             <button onClick={() => {
                 const inputStr = inputEl.current.value;
+
                 if (inputStr !== '') {
                     props.handlerClick(inputStr, ObjId);
                 }

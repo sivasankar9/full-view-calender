@@ -7,7 +7,7 @@ const Loader = ({isLoading})=>{
 };
 
 const mapStateToProps = state =>  ({
-    isLoading: true
+    isLoading: false
 });
 
 export default connect(mapStateToProps)(Loader);

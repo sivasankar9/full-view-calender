@@ -11,7 +11,8 @@ export default (url, options={}) => {
           ...options
     };
 
-    let y = fetch(`${eventsApi}/${url}`, headers )
+    let y = fetch(`${eventsApi}/${url}`, headers)
         .then(resp =>resp);
+
         return y;
 };

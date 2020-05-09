@@ -1,4 +1,6 @@
+import actions from '../actions-list';
 import { loginCredentials } from '../../login/service';
+
 
 export const login = payload => {
 	return async dispatch => {
@@ -11,7 +13,7 @@ export const login = payload => {
 			localStorage.setItem("accessToken", data.accessToken);
 			
 			dispatch({
-				type: "LOGIN_CREDENTIALS",
+				type: actions.LOGIN_CREDENTIALS,
 				payload: data
 			});
 		}

@@ -16,7 +16,7 @@ export default class EventCalender extends Component {
     myRef = React.createRef();
 
     handleEvents = (e) => {
-        this.props.updateCheckbox({ label: 'e.target.label', ischecked: e.target.checked, ObjId: e.target.value });
+        this.props.allNewCalenderEvents({ label: 'e.target.label', ischecked: e.target.checked, ObjId: e.target.value });
     }
     handleCloseButton = ()=>{
         this.props.model(!this.props.modelWindowCalender);
@@ -29,17 +29,21 @@ export default class EventCalender extends Component {
     }
     componentWillMount = () => {
 
-        this.props.fetchData();//events
+        this.props.fetchCalenderEventsData();
 
-        this.props.fetchCalenderEvents();
+        this.props.fetchNewCalenderEventsData();
 
         this.props.fetchProrityEvents();
+    }
+
+    componentWillReceiveProps(next){
+        console.log("cmp:::prev::",next);
     }
 
     handlerCreateEvent = (e) => {
         const ObjId = Math.random().toString(36).substring(7);
 
-        this.props.addCreateEvent({
+        this.props.CreateNewCalenderEvent({
             label: e.current.value,
             isSelected: true,
             ObjId});
@@ -56,14 +60,13 @@ export default class EventCalender extends Component {
         const selectedDate = this.date;
 
         this.props.model(false);
-        this.props.addEvent({
+        this.props.allCalenderEvents({
             eventType, title, date: selectedDate, priorityId
         }
 
         );
     }
     render() {
-
         return (<div>
         <div>
             <Header />

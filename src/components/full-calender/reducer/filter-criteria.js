@@ -1,15 +1,12 @@
-const intialstate = [];//2
+import actions from '../actions-list';
+
+const intialstate = [];
 
 export default (state = intialstate, action) => {
-    if (action.type === "ALL_NEW_CALENDER_EVENTS") {
-        return action.payload;
+    switch (action.type) {
+        case actions.FETCH_ALL_NEW_CALENDER_EVENTS:return action.payload;
+        case actions.ADD_NEW_CALENDER: return [...state, action.payload];
+        case actions.REMOVE_NEW_CALENDER: return state.filter(item => (item.ObjId !== action.payload.ObjId));
+        default:return state;
     }
-    if (action.type === "ADD_NEW_CALENDER") {
-        return [...state, action.payload];
-        
-    };
-    if (action.type === "REMOVE_NEW_CALENDER") {
-        return state.filter(item => (item.ObjId !== action.payload.ObjId));
-    }
-    return state;
 }; 

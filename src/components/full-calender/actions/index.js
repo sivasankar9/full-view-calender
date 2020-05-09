@@ -1,23 +1,23 @@
 import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, postNewCreateEventsData} from '../components/shared/service';
 import actions from '../actions-list';
 
-export const updateCheckbox = payload =>{
+export const allNewCalenderEvents = payload =>{
 	return dispatch => {
 		
 		if (!payload.ischecked) {
 			dispatch({
-				type: "REMOVE_NEW_CALENDER",
+				type: actions.REMOVE_NEW_CALENDER,
 				payload
 			});
 		} else {
 			dispatch({
-				type: "ADD_NEW_CALENDER",
+				type: actions.ADD_NEW_CALENDER,
 				payload
 			});
 		}
 			
 		dispatch({
-			type: "UPDATE_NEW_CALENDER",
+			type: actions.UPDATE_ALL_NEW_CALENDER_EVENTS,
 			payload
 		});
 	
@@ -60,46 +60,41 @@ export const fetchProrityEvents = payload=>{
 export const model = payload => dispatch => {
 
 	dispatch(({
-		type: "SHOW_MODEL",
+		type: actions.SHOW_MODEL,
 		payload
 	})
 	);
 };
 
-export const fetchData = () => {
+export const fetchCalenderEventsData = () => {
 	return async dispatch => {
 
 		const response = await getEventsData();
 		const payload = await response.json();
 		
 		dispatch(({
-			type: "UPDATE_FETCH_EVENTS",
+			type: actions.UPDATE_ALL_CALENDER_EVENTS,
 			payload
 		})
 		);
 	};
 };
 
-export const fetchCalenderEvents = () => {
+export const fetchNewCalenderEventsData = () => {
 	return async dispatch => {
 
 		const response = await getCalenderEventsData();
 		const payload = await response.json();
 
 		dispatch(({
-			type: "FETCH_CALENDER_EVENTS",
+			type: actions.FETCH_ALL_NEW_CALENDER_EVENTS,
 			payload
 		})
 		);
-
-		dispatch({
-			type: "ALL_NEW_CALENDER_EVENTS",
-			payload
-		});
 	};
 };
 
-export const addEvent = (payload) => {
+export const allCalenderEvents = (payload) => {
 
 	return async dispatch => {
 		
@@ -112,7 +107,7 @@ export const addEvent = (payload) => {
 			const payload = await response.json();
 
 			dispatch(({
-				type: "UPDATE_FETCH_EVENTS",
+				type: actions.UPDATE_ALL_CALENDER_EVENTS,
 				payload
 			})
 			);
@@ -121,7 +116,7 @@ export const addEvent = (payload) => {
 
 };
 
-export const addCreateEvent = (payload) => {
+export const CreateNewCalenderEvent = (payload) => {
 
 	return async dispatch => {
 		
@@ -135,12 +130,12 @@ export const addCreateEvent = (payload) => {
 
 
 			dispatch(({
-				type: "FETCH_CALENDER_EVENTS",
+				type: actions.FETCH_ALL_NEW_CALENDER_EVENTS,
 				payload
 			})
 			);
 		dispatch({
-			type: "ALL_CALENDER_EVENTS",
+			type: actions.ALL_CALENDER_EVENTS,
 			payload
 		});
 		}

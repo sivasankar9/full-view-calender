@@ -1,5 +1,5 @@
 
-import { addCreateEvent, addEvent, fetchCalenderEvents, fetchData, fetchProrityEvents, model, priorityUpdateCheckbox, updateCheckbox } from './actions';
+import { CreateNewCalenderEvent, allCalenderEvents, fetchCalenderEventsData, fetchNewCalenderEventsData, fetchProrityEvents, model, priorityUpdateCheckbox, allNewCalenderEvents } from './actions';
 import EventCalender from './components';
 import { connect } from 'react-redux';
 
@@ -37,4 +37,4 @@ const mapStateToProps = state => ({
 
 });
 
-export default connect(mapStateToProps, { fetchProrityEvents, updateCheckbox, model, addEvent, fetchData, fetchCalenderEvents, addCreateEvent, priorityUpdateCheckbox })(EventCalender);
+export default connect(mapStateToProps, { fetchProrityEvents, allNewCalenderEvents, model, allCalenderEvents, fetchNewCalenderEventsData, fetchCalenderEventsData, CreateNewCalenderEvent, priorityUpdateCheckbox })(EventCalender);

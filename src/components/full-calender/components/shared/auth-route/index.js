@@ -8,8 +8,6 @@ const AuthRoute = props => {
 
   if (data.isLogin) {
 
-    localStorage.setItem("accessToken", data.accessToken);
-
     return <Redirect to='/calender' />;
   }
 

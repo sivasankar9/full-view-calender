@@ -7,15 +7,9 @@ import { connect } from 'react-redux';
 import {makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block'
-    }
-  },
   userInfo: {
     position: 'relative',
-    color: 'red',
+    color: 'white',
     marginRight: theme.spacing(2)
 
   }
@@ -28,9 +22,6 @@ const Header = (props)=> {
     <div >
       <AppBar position='static'>
         <Toolbar>
-          <Typography className={classes.title} variant='h6' noWrap>
-            Calender
-          </Typography>
           <Typography variant='h6' className={classes.userInfo}>
             <Welcome loginDetails = {props.loginDetails}/>
          </Typography>

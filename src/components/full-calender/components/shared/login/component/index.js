@@ -1,10 +1,5 @@
-import React, {useState} from 'react';
 import { Button, TextField, Typography } from "@material-ui/core";
-import MuiAlert from "@material-ui/lab/Alert";
-
-function Alert(props) {
-    return <MuiAlert elevation={6} variant='filled' {...props} />;
-}
+import React, {useState} from 'react';
 
 export default (props) => {
 
@@ -52,12 +47,6 @@ export default (props) => {
             >
                 Login
           </Button>
-            {(props.error || error) && (
-                <Alert severity='error' onClick={() => setError(null)}>
-                    {props.error || error}
-                </Alert>
-            )}
-
         </form>
     );
 };

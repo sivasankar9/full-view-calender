@@ -5,16 +5,16 @@ import Loader from './components/full-calender/components/shared/loader';
 import Login from './components/full-calender/components/shared/login';
 import React from 'react';
 
-export default ({ history }) =>
-    <Router history={history}>
+export default () =>
+    <Router>
         <div>
             <Loader />
 
-            <AuthRoute path='/' >
+            <AuthRoute exact path='/' >
                 <Login />
             </AuthRoute>
             
-    <Route strict path='/calender' component={EventCalender} />
+            <Route strict path='/calender' component={EventCalender} />
         </div>
     </Router>;
 

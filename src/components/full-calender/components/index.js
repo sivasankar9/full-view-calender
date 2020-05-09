@@ -1,6 +1,7 @@
 import '../../../App.css';
 import './style.css';
 import Checkbox from './shared/check-box';
+import Header from './shared/header';
 import { Component } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import ModelWindow from './shared/ModelWindow';
@@ -63,7 +64,13 @@ export default class EventCalender extends Component {
     }
     render() {
 
-        return (<div className='full-calender-container'>
+        return (<div>
+        <div>
+            <Header />
+        </div>
+        
+        <div className='full-calender-container'>
+            
             <div>
                 {
                     this.props.newCalender.map(item => <Checkbox
@@ -112,6 +119,7 @@ export default class EventCalender extends Component {
                 hasEvents = {this.props.newCalender.length>0}
                 handleCloseButton = {this.handleCloseButton}
             />
+        </div>
         </div>);
     }
 }

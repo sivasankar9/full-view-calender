@@ -8,6 +8,7 @@ export const userAvailabilityService = async (payload)=>{
 
     return myData.json();
 };
+
 export const emailAvailabilityService = async (payload)=>{
     const myData = await fetchData('email', {
         method: 'POST',
@@ -16,6 +17,7 @@ export const emailAvailabilityService = async (payload)=>{
 
     return myData.json();
 };
+
 export const registerUserDetailsService = async (payload)=>{
     const myData = await fetchData('create-user', {
         method: "POST",

@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import {isEmpty} from './../../utilities/isEmpty'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,14 +46,14 @@ export default function Register(props) {
 
     const {registerFormEmail: {error: emailError}, registerFormPassword: {error: passwordError}, registerFormUsername: {error: usernameError}} = props;
 
-    let flg = [!emailError, !passwordError, !usernameError].every(a => a);
+    const flg = [!emailError, !passwordError, !usernameError].every(a => a);
 
     return flg;
   };
 
   const userhandlerBlur = (e) => {
 
-    if (e.target.value !== "") {
+    if (isEmpty(e.target.value)) {
       props.userAvailability(e.target.value);
     }
   };
@@ -64,7 +65,7 @@ export default function Register(props) {
 
   const emailhandlerBlur = (e) => {
 
-    if (e.target.value !== "") {
+    if (isEmpty(e.target.value)) {
       props.emailAvailability(e.target.value);
     }
   };
@@ -74,7 +75,7 @@ export default function Register(props) {
   };
   const passwordhandlerBlur = (e) => {
 
-    if (e.target.value !== "") {
+    if (isEmpty(e.target.value)) {
       props.passwordAvailability(e.target.value);
     }
   };
@@ -83,7 +84,6 @@ export default function Register(props) {
 
   };
 
-  console.log(props);
   return (
     <Container component='main' maxWidth='xs'>
       <CssBaseline />

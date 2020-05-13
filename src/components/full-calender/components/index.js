@@ -36,18 +36,15 @@ export default class EventCalender extends Component {
         this.props.fetchProrityEvents();
     }
 
-    componentWillReceiveProps(next){
-        console.log("cmp:::prev::",next);
-    }
-
     handlerCreateEvent = (e) => {
         const ObjId = Math.random().toString(36).substring(7);
 
-        this.props.CreateNewCalenderEvent({
-            label: e.current.value,
-            isSelected: true,
-            ObjId});
-
+        if (e.current.value.length !==0) {
+            this.props.CreateNewCalenderEvent({
+                label: e.current.value,
+                isSelected: true,
+                ObjId});
+        }
         e.current.value = '';
         
     }
@@ -82,6 +79,7 @@ export default class EventCalender extends Component {
                         handleEvents={(chckbox)=>this.handleEvents(chckbox)}
                         label={item.label}
                         checkedFlg={item.isSelected}
+
                     ></Checkbox>)
                 }
 

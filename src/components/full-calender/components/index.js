@@ -1,9 +1,10 @@
 import '../../../App.css';
 import './style.css';
 import Checkbox from './shared/check-box';
-import Header from './shared/header';
 import { Component } from 'react';
+import CreateOtherCalender from './shared/create-new-calender';
 import FullCalendar from '@fullcalendar/react';
+import Header from './shared/header';
 import ModelWindow from './shared/ModelWindow';
 import PriorityCheackBox from './shared/priority-checkBox';
 import React from 'react';
@@ -13,12 +14,10 @@ import interactionPlugin from '@fullcalendar/interaction';
 export default class EventCalender extends Component {
     date;
 
-    myRef = React.createRef();
-
-    isEmpty = value =>!(/^\s*$/.test(value)) && !(value === null);
-
     handleEvents = (e) => {
-        this.props.allNewCalenderEvents({ label: 'e.target.label', ischecked: e.target.checked, ObjId: e.target.value });
+        const eTarget= e.target;
+
+        this.props.allNewCalenderEvents({ ischecked: eTarget.checked, ObjId: eTarget.value });
     }
     handleCloseButton = ()=>{
         this.props.model(!this.props.modelWindowCalender);
@@ -38,21 +37,19 @@ export default class EventCalender extends Component {
         this.props.fetchProrityEvents();
     }
 
-    handlerCreateEvent = (e) => {
+    handlerCreateEvent = (title) => {
         const ObjId = Math.random().toString(36).substring(7);
 
-        if (this.isEmpty(e.current.value)) {
             this.props.CreateNewCalenderEvent({
-                label: e.current.value,
+                label: title,
                 isSelected: true,
                 ObjId});
-        }
-        e.current.value = '';
         
     }
     handlerPriority = (e)=>{
+        const eTarget= e.target;
         
-        this.props.priorityUpdateCheckbox({priorityId: e.target.value, isSelected: e.target.checked});
+        this.props.priorityUpdateCheckbox({priorityId: eTarget.value, isSelected: eTarget.checked});
     }
 
     handlerClick = (title, eventType, priorityId) => {
@@ -102,9 +99,7 @@ export default class EventCalender extends Component {
             </div>
             
             <div>
-                <h4>Other calenders</h4>
-                <input type='text' ref = {this.myRef}/>
-                <button onClick={() => this.handlerCreateEvent(this.myRef)}>CREATE</button>
+                <CreateOtherCalender handlerCreateEvent = {this.handlerCreateEvent}/>
             </div>
 
             <div>

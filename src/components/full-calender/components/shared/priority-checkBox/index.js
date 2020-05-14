@@ -1,12 +1,23 @@
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
 import React from 'react';
 
-export default ({label,handlerPriority,isSelected,value})=>{
+export default ({ label, handlerPriority, value, isSelected }) => {
 
-    return (<div>
-        <input type = "checkbox"
-         onChange = {(e)=>handlerPriority(e)}
-         checked = {isSelected}
-         value = {value}/>{label}
-         
-        </div>);
-};
+    return (
+        <FormGroup row>
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={isSelected}
+                        onChange={(e) => handlerPriority(e)}
+                        value={value}
+                        color='primary'
+                    />
+                }
+                label={label}
+            />
+        </FormGroup>
+    );
+}; 

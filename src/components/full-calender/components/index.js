@@ -2,7 +2,7 @@ import '../../../App.css';
 import './style.css';
 import Checkbox from './shared/check-box';
 import { Component } from 'react';
-import CreateOtherCalender from './shared/create-other-calender';
+import CreateOtherCalender from './shared/create-new-calender';
 import FullCalendar from '@fullcalendar/react';
 import Header from './shared/header';
 import ModelWindow from './shared/ModelWindow';
@@ -15,7 +15,9 @@ export default class EventCalender extends Component {
     date;
 
     handleEvents = (e) => {
-        this.props.allNewCalenderEvents({ label: 'e.target.label', ischecked: e.target.checked, ObjId: e.target.value });
+        const eTarget= e.target;
+
+        this.props.allNewCalenderEvents({ ischecked: eTarget.checked, ObjId: eTarget.value });
     }
     handleCloseButton = ()=>{
         this.props.model(!this.props.modelWindowCalender);
@@ -45,8 +47,9 @@ export default class EventCalender extends Component {
         
     }
     handlerPriority = (e)=>{
+        const eTarget= e.target;
         
-        this.props.priorityUpdateCheckbox({priorityId: e.target.value, isSelected: e.target.checked});
+        this.props.priorityUpdateCheckbox({priorityId: eTarget.value, isSelected: eTarget.checked});
     }
 
     handlerClick = (title, eventType, priorityId) => {

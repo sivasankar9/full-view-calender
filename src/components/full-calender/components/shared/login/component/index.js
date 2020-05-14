@@ -1,5 +1,6 @@
 import { Button, TextField, Typography } from "@material-ui/core";
 import React, {useState} from 'react';
+import {Link} from "react-router-dom";
 
 export default (props) => {
 
@@ -18,8 +19,12 @@ export default (props) => {
     return (
         <form>
             <Typography variant='h5' style={{ marginBottom: 8 }}>
-                Login
+                <ul>
+                    <li><Link to = '/'>Login</Link></li>
+                    <li><Link to = '/register'>Register</Link></li>
+                </ul>
           </Typography>
+         
             <TextField
                 label='Username'
                 variant='outlined'

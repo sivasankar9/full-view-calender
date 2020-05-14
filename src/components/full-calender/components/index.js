@@ -15,6 +15,8 @@ export default class EventCalender extends Component {
 
     myRef = React.createRef();
 
+    isEmpty = value =>!(/^\s*$/.test(value)) && !(value === null);
+
     handleEvents = (e) => {
         this.props.allNewCalenderEvents({ label: 'e.target.label', ischecked: e.target.checked, ObjId: e.target.value });
     }
@@ -36,18 +38,15 @@ export default class EventCalender extends Component {
         this.props.fetchProrityEvents();
     }
 
-    componentWillReceiveProps(next){
-        console.log("cmp:::prev::",next);
-    }
-
     handlerCreateEvent = (e) => {
         const ObjId = Math.random().toString(36).substring(7);
 
-        this.props.CreateNewCalenderEvent({
-            label: e.current.value,
-            isSelected: true,
-            ObjId});
-
+        if (this.isEmpty(e.current.value)) {
+            this.props.CreateNewCalenderEvent({
+                label: e.current.value,
+                isSelected: true,
+                ObjId});
+        }
         e.current.value = '';
         
     }
@@ -82,6 +81,7 @@ export default class EventCalender extends Component {
                         handleEvents={(chckbox)=>this.handleEvents(chckbox)}
                         label={item.label}
                         checkedFlg={item.isSelected}
+
                     ></Checkbox>)
                 }
 

@@ -4,14 +4,14 @@ export const getEventsData =async () => {
 
     const myData = await fetchCallData('events');
 
-    return myData;
+    return myData.json();
 };
 
 export const getCalenderEventsData =async () => {
 
     const myData = await fetchCallData('new-calender');
 
-    return myData;
+    return myData.json();
 };
 
 export const postEventsData =async (payload) => {
@@ -21,7 +21,7 @@ export const postEventsData =async (payload) => {
         body: JSON.stringify(payload)	
     });
 
-    return myData;
+    return myData.json();
 };
 
 export const postNewCreateEventsData =async (payload) => {
@@ -31,7 +31,7 @@ export const postNewCreateEventsData =async (payload) => {
         body: JSON.stringify(payload)	
     });
 
-    return myData;
+    return myData.json();
 };
 
 export const updateNewCalender =async (payload) => {
@@ -41,18 +41,27 @@ export const updateNewCalender =async (payload) => {
         body: JSON.stringify(payload)	
     });
 
-    return myData;
+    return myData.json();
 };
 export const getNewCalender =async () => {
 
     const myData = await fetchCallData('update-new-calender');
 
-    return myData;
+    return myData.json();
 };
 
 export const getProrityData =async () => {
 
     const myData = await fetchCallData('priority-events');
 
-    return myData;
+    return myData.json();
+};
+
+export const updateCalenderEventByIdService = async (payload)=>{
+    const myData = await fetchCallData('update-calender-event-by-id', {
+        method: 'POST',
+        body: JSON.stringify(payload)	 
+    });
+
+    return myData.json();
 };

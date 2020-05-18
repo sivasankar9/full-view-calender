@@ -1,4 +1,4 @@
-import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, postNewCreateEventsData} from '../components/shared/service';
+import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, postNewCreateEventsData, updateCalenderEventByIdService} from '../components/shared/service';
 import actions from '../actions-list';
 
 export const allNewCalenderEvents = payload =>{
@@ -43,10 +43,9 @@ export const priorityUpdateCheckbox = payload=>dispatch=>{
 	
 };
 
-export const fetchProrityEvents = payload=>{
+export const fetchProrityEvents = ()=>{
 	return async dispatch=>{
-		const response = await getProrityData();
-		const payload = await response.json();
+		const payload = await getProrityData();
 
 		dispatch({
 			type: actions.PRIROTY_STATUS,
@@ -55,6 +54,18 @@ export const fetchProrityEvents = payload=>{
 		
 	};
 
+};
+
+export const updateCalenderEventById = payload=>{
+	return async dispatch=>{
+		const response = await updateCalenderEventByIdService(payload);
+
+		dispatch(({
+			type: actions.UPDATE_ALL_CALENDER_EVENTS,
+			payload: response
+		})
+		);
+	};
 };
 
 export const model = payload => dispatch => {
@@ -69,8 +80,7 @@ export const model = payload => dispatch => {
 export const fetchCalenderEventsData = () => {
 	return async dispatch => {
 
-		const response = await getEventsData();
-		const payload = await response.json();
+		const payload = await getEventsData();
 		
 		dispatch(({
 			type: actions.UPDATE_ALL_CALENDER_EVENTS,
@@ -83,8 +93,7 @@ export const fetchCalenderEventsData = () => {
 export const fetchNewCalenderEventsData = () => {
 	return async dispatch => {
 
-		const response = await getCalenderEventsData();
-		const payload = await response.json();
+		const payload = await getCalenderEventsData();
 
 		dispatch(({
 			type: actions.FETCH_ALL_NEW_CALENDER_EVENTS,
@@ -99,16 +108,14 @@ export const allCalenderEvents = (payload) => {
 	return async dispatch => {
 		
 		const response = await postEventsData(payload);
-		const data = await response.json();
 
-		if (data.ok) {
+		if (response.ok) {
 			
 			const response = await getEventsData();
-			const payload = await response.json();
 
 			dispatch(({
 				type: actions.UPDATE_ALL_CALENDER_EVENTS,
-				payload
+				payload: response
 			})
 			);
 		}
@@ -121,17 +128,14 @@ export const CreateNewCalenderEvent = (payload) => {
 	return async dispatch => {
 		
 		const response = await postNewCreateEventsData(payload);
-		const data = await response.json();
 
-		if (data.ok) {
+		if (response.ok) {
 			
 			const response = await getCalenderEventsData();
-			const payload = await response.json();
-
 
 			dispatch(({
 				type: actions.FETCH_ALL_NEW_CALENDER_EVENTS,
-				payload
+				payload: response
 			})
 			);
 		dispatch({

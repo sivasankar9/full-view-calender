@@ -8,12 +8,16 @@ import Header from './shared/header';
 import ModelWindow from './shared/ModelWindow';
 import PriorityCheackBox from './shared/priority-checkBox';
 import React from 'react';
+import {convert} from '../components/shared/utilities';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 
 export default class EventCalender extends Component {
     date;
 
+    state = {
+        myDragEvent: ''
+    }
     handleEvents = (e) => {
         const eTarget= e.target;
 
@@ -50,6 +54,13 @@ export default class EventCalender extends Component {
         const eTarget= e.target;
         
         this.props.priorityUpdateCheckbox({priorityId: eTarget.value, isSelected: eTarget.checked});
+    }
+    
+    handlerEventsDrop = (info)=>{
+        let eventDate = convert(info.event.start);
+
+        this.props.updateCalenderEventById({_id: info.event.extendedProps._id, date: eventDate});
+        
     }
 
     handlerClick = (title, eventType, priorityId) => {
@@ -106,7 +117,10 @@ export default class EventCalender extends Component {
                 <FullCalendar
                     dateClick={this.handlerDateClick}
                     plugins={[dayGridPlugin, interactionPlugin]}
-                    events={this.props.calenderdata} />
+                    events={this.props.calenderdata} 
+                    editable = {true}
+                    draggable = {true}
+                    eventDrop = {(info)=>this.handlerEventsDrop(info)}/>
             </div>
             
                 <ModelWindow

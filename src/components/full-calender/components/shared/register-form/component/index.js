@@ -1,8 +1,9 @@
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import React from 'react';
+import TextErrorField from './../../text-field-error';
 import TextField from '@material-ui/core/TextField';
 import {isEmpty} from './../../utilities';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Register(props) {
 
   const classes = useStyles();
+  const [error, updateError] = useState(false);
 
   const handlerRegisterClick = (props)=>{
     const {registerFormEmail: {value: email}, registerFormPassword: {value: password}, registerFormUsername: {value: username}} = props;
@@ -46,8 +48,9 @@ export default function Register(props) {
   const userhandlerBlur = (e) => {
 
     if (isEmpty(e.target.value)) {
+      updateError(true);
       props.userAvailability(e.target.value);
-    }
+    } 
   };
   
   const userhandlerChange = (e) => {
@@ -58,6 +61,7 @@ export default function Register(props) {
   const emailhandlerBlur = (e) => {
 
     if (isEmpty(e.target.value)) {
+      updateError(true);
       props.emailAvailability(e.target.value);
     }
   };
@@ -90,13 +94,18 @@ export default function Register(props) {
                 required
                 defaultValue={props.registerFormUsername.value}
                 fullWidth
-                helperText={props.registerFormUsername.message}
                 id='firstName'
                 label='User Name'
-                autoFocus
                 onBlur={userhandlerBlur}
                 onChange={userhandlerChange}
-              />
+                />
+                <TextErrorField
+                  helperText={props.registerFormUsername.message}
+                  userError = {props.registerFormUsername.error}
+                  userName = {props.registerFormUsername.value}
+                  error = {error}
+
+                  />
             </Grid>
             <Grid item xs={12}>
               <TextField
@@ -110,8 +119,11 @@ export default function Register(props) {
                 autoComplete='email'
                 onBlur={emailhandlerBlur}
                 onChange={emailhandlerChange}
+                />
+              <TextErrorField
                 helperText={props.registerFormEmail.message}
-              />
+                  error = {error}
+                  />
             </Grid>
             <Grid item xs={12}>
               <TextField

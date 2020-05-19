@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
-import {isEmpty} from './../../utilities/isEmpty'
+import {isEmpty} from './../../utilities';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center'
   },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
-  },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3)
@@ -25,10 +21,6 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     color: "red"
-  },
-  buttonOff: {
-    margin: theme.spacing(3, 0, 2),
-    color: "white"
   }
 }));
 

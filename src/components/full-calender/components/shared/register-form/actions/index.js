@@ -1,6 +1,6 @@
 import { emailAvailabilityService, registerUserDetailsService, userAvailabilityService} from '../service';
 import actions from '../action-list';
-import {isValidPassword} from './../../utilities/isEmpty';
+import {isValidPassword} from './../../utilities';
 
 export const userAvailability = username => {
 

@@ -18,7 +18,7 @@ export default (props) => {
 
     return (
         <form>
-            <Typography variant='h5' style={{ marginBottom: 8 }}>
+            <Typography variant='h5'>
                 <ul>
                     <li><Link to = '/'>Login</Link></li>
                     <li><Link to = '/register'>Register</Link></li>

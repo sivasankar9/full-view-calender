@@ -15,6 +15,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 export default class EventCalender extends Component {
     date;
 
+    state = {
+        myDragEvent: ''
+    }
     handleEvents = (e) => {
         const eTarget= e.target;
 

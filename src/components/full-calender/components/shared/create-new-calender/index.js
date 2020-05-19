@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
-import TextErrorField from '../text-field-error';
+import TextErrorField from '../text-field-error-register-form';
 import TextField from '@material-ui/core/TextField';
 import { isEmpty } from '../utilities';
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,7 +30,8 @@ export default ({ handlerCreateEvent }) => {
             />
             <TextErrorField
                 error={error}
-                helperText='Enter new calender name'
+                helperText={()=><p className = 'MuiFormHelperText-root Mui-error'>Enter new calender name</p>}
+                className = 'MuiFormHelperText-root Mui-error'
             />
             <Button variant='contained' color='primary'
                 onClick={() => {

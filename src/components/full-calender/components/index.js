@@ -15,9 +15,6 @@ import interactionPlugin from '@fullcalendar/interaction';
 export default class EventCalender extends Component {
     date;
 
-    state = {
-        myDragEvent: ''
-    }
     handleEvents = (e) => {
         const eTarget= e.target;
 
@@ -57,7 +54,7 @@ export default class EventCalender extends Component {
     }
     
     handlerEventsDrop = (info)=>{
-        let eventDate = convert(info.event.start);
+        const eventDate = convert(info.event.start);
 
         this.props.updateCalenderEventById({_id: info.event.extendedProps._id, date: eventDate});
         

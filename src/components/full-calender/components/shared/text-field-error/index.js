@@ -5,7 +5,7 @@ const TextFieldError = (props)=>{
     return <React.Fragment>
              {
                  props.error?
-             <div>{props.helperText()}</div>
+                    <p className = 'MuiFormHelperText-root Mui-error'>{props.helperText}</p>
                     :null
              
              }

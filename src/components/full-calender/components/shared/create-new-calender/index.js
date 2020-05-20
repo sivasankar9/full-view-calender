@@ -30,7 +30,8 @@ export default ({ handlerCreateEvent }) => {
             />
             <TextErrorField
                 error={error}
-                helperText='Enter new calender name'
+                helperText={()=>
+                <p className = 'MuiFormHelperText-root Mui-error'>Enter new calender name</p>}
             />
             <Button variant='contained' color='primary'
                 onClick={() => {

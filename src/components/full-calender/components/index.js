@@ -45,8 +45,8 @@ export default class EventCalender extends Component {
                 label: title,
                 isSelected: true,
                 ObjId});
-        
     }
+    
     handlerPriority = (e)=>{
         const eTarget= e.target;
         
@@ -57,7 +57,6 @@ export default class EventCalender extends Component {
         const eventDate = convert(info.event.start);
 
         this.props.updateCalenderEventById({_id: info.event.extendedProps._id, date: eventDate});
-        
     }
 
     handlerClick = (title, eventType, priorityId) => {
@@ -67,9 +66,9 @@ export default class EventCalender extends Component {
         this.props.allCalenderEvents({
             eventType, title, date: selectedDate, priorityId
         }
-
         );
     }
+
     render() {
         return (<div>
         <div>

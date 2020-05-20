@@ -1,0 +1,10 @@
+.model-window{
+    background-color: darkgrey;
+    width:150%;
+    height:50%;
+}
+.model-window-title{
+    background-color:gainsboro;
+    width:75%;
+    height:75%;
+}

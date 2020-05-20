@@ -1,25 +1,40 @@
-import './style.css';
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
-import App from './App';
-import {Provider} from 'react-redux';
-import React from 'react';
-import fullCalender from './components/full-calender/reducer';
-import loginCalender from './components/full-calender/components/shared/login/reducer';
-import registerFormCalender from './components/full-calender/components/shared/register-form/reducer';
-import { render } from 'react-dom';
-import thunkMiddleware from 'redux-thunk';
- 
 
-let store = createStore(combineReducers({
-    fullCalender,
-    loginCalender,
-    registerFormCalender
-}), compose(
-      applyMiddleware(thunkMiddleware),
-      window.devToolsExtension ? window.devToolsExtension() : f => f
-    ));
+import { CreateNewCalenderEvent, allCalenderEvents, allNewCalenderEvents, fetchCalenderEventsData, fetchNewCalenderEventsData, fetchProrityEvents, model, priorityUpdateCheckbox, updateCalenderEventById } from './actions';
+import EventCalender from './components';
+import { connect } from 'react-redux';
 
+const filterEvents = (criteria, priorityCriteria, events) => {
 
-render(<Provider store = {store}>
-    <App />
-    </Provider>, document.getElementById('root'));
+    let filetrCalenderEvents = criteria.reduce((acc, item) => {
+        return acc.concat(events.filter(data => data.eventType === item.ObjId));
+    }, []);
+
+    if (priorityCriteria.length > 0) {
+        let xc = filetrCalenderEvents.reduce((acc, item) => {
+            let x = [];
+
+            priorityCriteria.forEach(pcitem => {
+                if (pcitem.priorityId == item.priorityId) {
+                    x.push(item);
+                }
+            });
+            return acc.concat(x);
+        }, []);
+
+        return xc;
+    } else {
+        return filetrCalenderEvents;
+    }
+};
+
+const mapStateToProps = state => ({
+    calenderdata: filterEvents(state.fullCalender.filterCriteria, state.fullCalender.priorityFilterCriteria, state.fullCalender.calenderEvents.events),
+    calendercriterai: state.fullCalender.filterCriteria,
+    modelWindowCalender: state.fullCalender.calenderModelWindow,
+    newCalender: state.fullCalender.newCalenderEvents,
+    priorityEvents: state.fullCalender.priorityEvents,
+    priorityFilterCriteria: state.fullCalender.priorityFilterCriteria
+
+});
+
+export default connect(mapStateToProps, { updateCalenderEventById, fetchProrityEvents, allNewCalenderEvents, model, allCalenderEvents, fetchNewCalenderEventsData, fetchCalenderEventsData, CreateNewCalenderEvent, priorityUpdateCheckbox })(EventCalender);

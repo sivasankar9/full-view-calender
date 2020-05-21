@@ -57,6 +57,7 @@ export const fetchProrityEvents = ()=>{
 };
 
 export const updateCalenderEventById = payload=>{
+	debugger;
 	return async dispatch=>{
 		const response = await updateCalenderEventByIdService(payload);
 

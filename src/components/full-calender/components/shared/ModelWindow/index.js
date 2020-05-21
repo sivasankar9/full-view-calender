@@ -45,7 +45,7 @@ const ModalForm = (props) => {
     const selectHandler = (e) => {
         const ObjId = e.target.value;
 
-        let  slectedItem = props.newCalender.filter(item=>item.ObjId === ObjId);
+        const slectedItem = props.newCalender.filter(item=>item.ObjId === ObjId);
 
         updateModelState({...modelState, ObjId: e.target.value, color: slectedItem[0].color});
     };

@@ -1,11 +1,12 @@
 import '../../../App.css';
 import './style.css';
+import {ObjId, color} from './shared/utilities';
+import CheckBox from './shared/check-box';
 import { Component } from 'react';
 import CreateOtherCalender from './shared/create-new-calender';
 import FullCalendar from '@fullcalendar/react';
 import Header from './shared/header';
 import ModelWindow from './shared/ModelWindow';
-import MyCheckBox from './shared/check-box';
 import PriorityCheackBox from './shared/priority-checkBox';
 import React from 'react';
 import {convert} from '../components/shared/utilities';
@@ -39,8 +40,6 @@ export default class EventCalender extends Component {
     }
 
     handlerCreateEvent = (label) => {
-    const color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1, 6);
-    const ObjId = Math.random().toString(36).substring(7);
 
             this.props.CreateNewCalenderEvent({
                 label,
@@ -81,14 +80,14 @@ export default class EventCalender extends Component {
             
             <div>
                 {
-                    this.props.newCalender.map(item => <MyCheckBox
+                    this.props.newCalender.map(item => <CheckBox
                         key={item.ObjId}
                         value={item.ObjId}
                         handleEvents={(chckbox)=>this.handleEvents(chckbox)}
                         label={item.label}
                         checkedFlg={item.isSelected}
                         color = {item.color}
-                    ></MyCheckBox>)
+                    ></CheckBox>)
                 }
 
             </div>

@@ -12,6 +12,6 @@ export const isEmpty = value =>
 export const isValidPassword = value =>
 !(/^\s*$/.test(value)) && !(value === null) && !(value.length>=7);
 
-export const color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1, 6);
+export const generateColor = ()=>'#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1, 6);
 
-export const ObjId = Math.random().toString(36).substring(7);
+export const generateObjId =()=> Math.random().toString(36).substring(7);

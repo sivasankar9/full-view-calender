@@ -1,6 +1,6 @@
 import '../../../App.css';
 import './style.css';
-import {ObjId, color} from './shared/utilities';
+import {generateColor, generateObjId} from './shared/utilities';
 import CheckBox from './shared/check-box';
 import { Component } from 'react';
 import CreateOtherCalender from './shared/create-new-calender';
@@ -44,8 +44,8 @@ export default class EventCalender extends Component {
             this.props.CreateNewCalenderEvent({
                 label,
                 isSelected: true,
-                color,
-                ObjId});
+                color: generateColor(),
+                ObjId: generateObjId()});
     }
     
     handlerPriority = (e)=>{
@@ -57,7 +57,7 @@ export default class EventCalender extends Component {
     handlerEventsDrop = (info)=>{
         const eventDate = convert(info.event.start);
 
-        this.props.updateCalenderEventById({_id: info.event.extendedProps._id, date: eventDate});
+        this.props.updateCalenderEventById({eventId: info.event.extendedProps.eventId, date: eventDate});
     }
 
     handlerClick = (title, eventType, priorityId, color) => {
@@ -65,7 +65,7 @@ export default class EventCalender extends Component {
 
         this.props.model(false);
         this.props.allCalenderEvents({
-            eventType, title, date: selectedDate, priorityId, color
+            eventType, title, date: selectedDate, priorityId, color, eventId: generateObjId()
         }
         );
     }

@@ -2,22 +2,37 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 
-export default ({ label, handleEvents, value, checkedFlg }) => {
+const MyCheckBox= (props) => {
 
-    return (
-        <FormGroup row>
+    const checkBoxStyles = (color) =>()=> {
+        return ({
+          root: {
+            '&$checked': {
+              color
+            }
+          },
+          checked: {}
+         });
+      };
+
+        const CustomCheckbox = withStyles(checkBoxStyles(props.color))(Checkbox);
+
+        return (
+            <FormGroup row>
             <FormControlLabel
                 control={
-                    <Checkbox
-                        checked={checkedFlg}
-                        onChange={(evt) => handleEvents(evt)}
-                        value={value}
-                        color='primary'
-                    />
+                <CustomCheckbox  
+                checked={props.checkedFlg}
+                onChange={(evt) => props.handleEvents(evt)} 
+                value={props.value}
+                />
                 }
-                label={label}
+                label={props.label}
             />
         </FormGroup>
     );
 }; 
+
+export default MyCheckBox;

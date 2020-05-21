@@ -36,15 +36,18 @@ const ModalForm = (props) => {
 
     const initialState = {
         ObjId: 0,
-        priorityId: 0
+        priorityId: 0,
+        color: ''
     };
 
     const [modelState, updateModelState] = useState(initialState);
 
     const selectHandler = (e) => {
+        const ObjId = e.target.value;
 
-        updateModelState({...modelState, ObjId: e.target.value});
+        let  slectedItem = props.newCalender.filter(item=>item.ObjId === ObjId);
 
+        updateModelState({...modelState, ObjId: e.target.value, color: slectedItem[0].color});
     };
 
     const priorityhandler=(e)=>{
@@ -56,9 +59,9 @@ const ModalForm = (props) => {
         <form>
 
             <input type='text' ref={inputEl} />
-            <select onBlur={selectHandler} onChange={selectHandler}>
+            <select onBlur={selectHandler} onChange={selectHandler}  >
                 {
-                    props.newCalender.map(item => <option value={item.ObjId} key={item.id}>{item.label}</option>)
+                    props.newCalender.map(item =><option value={item.ObjId} key={item.id} >{item.label}</option>)
                 }
             </select>
 
@@ -72,7 +75,7 @@ const ModalForm = (props) => {
                 const inputStr = inputEl.current.value;
 
                 if (inputStr !== '') {
-                    props.handlerClick(inputStr, modelState.ObjId, modelState.priorityId);
+                    props.handlerClick(inputStr, modelState.ObjId, modelState.priorityId, modelState.color);
                 }
             }
             }>SAVE</button>

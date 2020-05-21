@@ -1,11 +1,11 @@
 import '../../../App.css';
 import './style.css';
-import Checkbox from './shared/check-box';
 import { Component } from 'react';
 import CreateOtherCalender from './shared/create-new-calender';
 import FullCalendar from '@fullcalendar/react';
 import Header from './shared/header';
 import ModelWindow from './shared/ModelWindow';
+import MyCheckBox from './shared/check-box';
 import PriorityCheackBox from './shared/priority-checkBox';
 import React from 'react';
 import {convert} from '../components/shared/utilities';
@@ -38,12 +38,14 @@ export default class EventCalender extends Component {
         this.props.fetchProrityEvents();
     }
 
-    handlerCreateEvent = (title) => {
-        const ObjId = Math.random().toString(36).substring(7);
+    handlerCreateEvent = (label) => {
+    const color = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1, 6);
+    const ObjId = Math.random().toString(36).substring(7);
 
             this.props.CreateNewCalenderEvent({
-                label: title,
+                label,
                 isSelected: true,
+                color,
                 ObjId});
     }
     
@@ -59,12 +61,12 @@ export default class EventCalender extends Component {
         this.props.updateCalenderEventById({_id: info.event.extendedProps._id, date: eventDate});
     }
 
-    handlerClick = (title, eventType, priorityId) => {
+    handlerClick = (title, eventType, priorityId, color) => {
         const selectedDate = this.date;
 
         this.props.model(false);
         this.props.allCalenderEvents({
-            eventType, title, date: selectedDate, priorityId
+            eventType, title, date: selectedDate, priorityId, color
         }
         );
     }
@@ -79,14 +81,14 @@ export default class EventCalender extends Component {
             
             <div>
                 {
-                    this.props.newCalender.map(item => <Checkbox
+                    this.props.newCalender.map(item => <MyCheckBox
                         key={item.ObjId}
                         value={item.ObjId}
                         handleEvents={(chckbox)=>this.handleEvents(chckbox)}
                         label={item.label}
                         checkedFlg={item.isSelected}
-
-                    ></Checkbox>)
+                        color = {item.color}
+                    ></MyCheckBox>)
                 }
 
             </div>

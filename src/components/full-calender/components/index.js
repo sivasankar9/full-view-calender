@@ -16,20 +16,25 @@ import interactionPlugin from '@fullcalendar/interaction';
 export default class EventCalender extends Component {
     date;
 
+    state = {
+        open: false
+    }
+
+    handleModelCloseButton = ()=>{
+        this.setState({open: false});
+    }
+
+    handleModelOpenButton = (e) => {
+        this.date = e.dateStr;
+        this.setState({open: true});
+    }
+
     handleEvents = (e) => {
         const eTarget= e.target;
 
         this.props.allNewCalenderEvents({ ischecked: eTarget.checked, ObjId: eTarget.value });
     }
-    handleCloseButton = ()=>{
-        this.props.model(!this.props.modelWindowCalender);
-    }
 
-    handlerDateClick = (e) => {
-        this.date = e.dateStr;
-        this.props.model(!this.props.modelWindowCalender);
-
-    }
     componentWillMount = () => {
 
         this.props.fetchCalenderEventsData();
@@ -68,6 +73,8 @@ export default class EventCalender extends Component {
             eventType, title, date: selectedDate, priorityId, color, eventId: generateObjId()
         }
         );
+        this.setState({open: false});
+
     }
 
     render() {
@@ -112,7 +119,7 @@ export default class EventCalender extends Component {
 
             <div>
                 <FullCalendar
-                    dateClick={this.handlerDateClick}
+                    dateClick={this.handleModelOpenButton}
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={this.props.calenderdata} 
                     editable = {true}
@@ -121,12 +128,13 @@ export default class EventCalender extends Component {
             </div>
             
                 <ModelWindow
-                modelShow={this.props.modelWindowCalender}
+                modelShow={this.state.open}
                 handlerClick={this.handlerClick}
                 newCalender = {this.props.newCalender}
                 priorityEvents = {this.props.priorityEvents}
                 hasEvents = {this.props.newCalender.length>0}
-                handleCloseButton = {this.handleCloseButton}
+                handleModelCloseButton = {this.handleModelCloseButton}
+                handleModelOpenButton = {this.handleModelOpenButton}
             />
         </div>
         </div>);

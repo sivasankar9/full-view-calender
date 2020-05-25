@@ -111,14 +111,6 @@ const ModalForm = (props) => {
 
     const [modelState, updateModelState] = useState(initialState);
 
-    // const getIndex = (id, props)=>{
-    //  for (let i=0;i<(props.length);i++) {
-    //    if (props[i].value === id)
-    //         return i;
-    //  }
-    //  return '';
-    // };
-
     const selectHandler = (e) => {
         const ObjId = e.target.value;
 
@@ -132,7 +124,6 @@ const ModalForm = (props) => {
         updateModelState({...modelState, priorityId: e.target.value});
     };
 
-console.log(">>>", props.newCalender[0]);
     return <div>
       
             <form className={classes.root} noValidate autoComplete='off'>
@@ -145,7 +136,6 @@ console.log(">>>", props.newCalender[0]);
             <FormControl className={classes.formControl}>
                 <Select onBlur={selectHandler} onChange={selectHandler}  
                   className={classes.selectEmpty}
-                  // value={ props.newCalender[0]}
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
                   {

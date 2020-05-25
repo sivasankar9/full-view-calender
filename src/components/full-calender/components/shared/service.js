@@ -58,7 +58,7 @@ export const getProrityData =async () => {
 };
 
 export const updateCalenderEventByIdService = async (payload)=>{
-    const myData = await fetchCallData('update-calender-event-by-id', {
+    const myData = await fetchCallData('events/update-calender-event-by-id', {
         method: 'PUT',
         body: JSON.stringify(payload)	 
     });

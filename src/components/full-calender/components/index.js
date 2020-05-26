@@ -9,6 +9,7 @@ import Header from './shared/header';
 import ModelWindow from './shared/ModelWindow';
 import PriorityCheackBox from './shared/priority-checkBox';
 import React from 'react';
+import ReadModeModelWindow from './shared/read-mode-model-window';
 import {convert} from '../components/shared/utilities';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -17,7 +18,10 @@ export default class EventCalender extends Component {
     date;
 
     state = {
-        open: false
+        open: false,
+        readModeWindow: false,
+        myText: '',
+        isEditable: false
     }
 
     handleModelCloseButton = ()=>{
@@ -29,6 +33,15 @@ export default class EventCalender extends Component {
         this.setState({open: true});
     }
 
+    handleReadModeModelOpen = (info)=>{
+        this.setState({readModeWindow: true, myText: info.event.title});
+    }
+    
+    handleReadModeModelClose = ()=>{
+
+        this.setState({readModeWindow: false});
+    }
+    
     handleEvents = (e) => {
         const eTarget= e.target;
 
@@ -68,13 +81,18 @@ export default class EventCalender extends Component {
     handlerClick = (title, eventType, priorityId, color) => {
         const selectedDate = this.date;
 
-        this.props.model(false);
         this.props.allCalenderEvents({
             eventType, title, date: selectedDate, priorityId, color, eventId: generateObjId()
-        }
-        );
+        });
         this.setState({open: false});
+    }
 
+    handleIsEditable = ()=>{
+        this.setState({isEditable: !this.state.isEditable});
+    }
+
+    handleIsDeleted = ()=>{
+        return true;
     }
 
     render() {
@@ -119,6 +137,7 @@ export default class EventCalender extends Component {
 
             <div>
                 <FullCalendar
+                    eventClick = {this.handleReadModeModelOpen}
                     dateClick={this.handleModelOpenButton}
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={this.props.calenderdata} 
@@ -135,6 +154,15 @@ export default class EventCalender extends Component {
                 hasEvents = {this.props.newCalender.length>0}
                 handleModelCloseButton = {this.handleModelCloseButton}
                 handleModelOpenButton = {this.handleModelOpenButton}
+            />
+
+                <ReadModeModelWindow
+                modelShow={this.state.readModeWindow}
+                handleReadModeModelClose = {this.handleReadModeModelClose}
+                handleReadModeModelOpen = {this.handleReadModeModelOpen}
+                state = {this.state}
+                handleIsEditable = {this.handleIsEditable}
+                handleIsDeleted = {this.handleIsDeleted}
             />
         </div>
         </div>);

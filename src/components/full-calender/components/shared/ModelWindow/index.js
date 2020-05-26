@@ -3,17 +3,17 @@ import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import Dialog from '@material-ui/core/Dialog';
+import FormControl from '@material-ui/core/FormControl';
 import IconButton from '@material-ui/core/IconButton';
+import MenuItem from '@material-ui/core/MenuItem';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { withStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
 
 
 const styles = (theme) => ({
@@ -47,7 +47,7 @@ const styles = (theme) => ({
   
   const DialogTitle = withStyles(styles)((props) => {
     const { children, classes, onClose, ...other } = props;
-
+    
     return (
       <MuiDialogTitle disableTypography className={classes.root} {...other}>
         <Typography variant='h6'>{children}</Typography>
@@ -77,7 +77,7 @@ export default ({ hasEvents, ...props }) => {
 
     return props.modelShow ?
         <div>
-             <Dialog onClose={props.handleModelCloseButton} aria-labelledby='customized-dialog-title' open={props.handleModelOpenButton}>
+             <Dialog onClose={props.handleModelCloseButton} aria-labelledby='customized-dialog-title' open={props.handlerDateClick}>
                
                 <DialogTitle id='customized-dialog-title' onClose={props.handleModelCloseButton}>
                 Create Events

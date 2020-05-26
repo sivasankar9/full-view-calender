@@ -28,7 +28,7 @@ export default class EventCalender extends Component {
         this.setState({open: false});
     }
 
-    handleModelOpenButton = (e) => {
+    handlerDateClick = (e) => {
         this.date = e.dateStr;
         this.setState({open: true});
     }
@@ -43,9 +43,9 @@ export default class EventCalender extends Component {
     }
     
     handleEvents = (e) => {
-        const eTarget= e.target;
+        const {target: {checked: ischecked, value: ObjId}} = e;
 
-        this.props.allNewCalenderEvents({ ischecked: eTarget.checked, ObjId: eTarget.value });
+        this.props.allNewCalenderEvents({ ischecked, ObjId});
     }
 
     componentWillMount = () => {
@@ -138,7 +138,7 @@ export default class EventCalender extends Component {
             <div>
                 <FullCalendar
                     eventClick = {this.handleReadModeModelOpen}
-                    dateClick={this.handleModelOpenButton}
+                    dateClick={this.handlerDateClick}
                     plugins={[dayGridPlugin, interactionPlugin]}
                     events={this.props.calenderdata} 
                     editable = {true}
@@ -153,7 +153,7 @@ export default class EventCalender extends Component {
                 priorityEvents = {this.props.priorityEvents}
                 hasEvents = {this.props.newCalender.length>0}
                 handleModelCloseButton = {this.handleModelCloseButton}
-                handleModelOpenButton = {this.handleModelOpenButton}
+                handlerDateClick = {this.handlerDateClick}
             />
 
                 <ReadModeModelWindow

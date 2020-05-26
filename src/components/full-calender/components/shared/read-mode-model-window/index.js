@@ -49,7 +49,7 @@ const DialogContent = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.text.primary,
+    color: theme.palette.text.primary
   }
 }));
 
@@ -63,7 +63,7 @@ export default (props) =>{
     
       <Dialog onClose={props.handleReadModeModelClose} aria-labelledby='customized-dialog-title' open={props.handleReadModeModelOpen}>
       <Grid container className={classes.root}>
-      <Grid item xs={8} >
+      <Grid item xs={8} onClick = {()=>props.handleIsDeleted(props.state.eventsClick.eventId)}>
         <DeleteSharpIcon />
       </Grid>
     </Grid>
@@ -72,8 +72,7 @@ export default (props) =>{
         <EditIcon />
       </Grid>
     </Grid>
-        <DialogTitle id='customized-dialog-title' onClose={props.handleReadModeModelClose}>
-        </DialogTitle>
+        <DialogTitle id='customized-dialog-title' onClose={props.handleReadModeModelClose}/>
         {
            props.state.isEditable? (<form className={classes.root} noValidate autoComplete='off'>
            <TextField id='standard-basic'

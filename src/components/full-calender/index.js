@@ -30,7 +30,6 @@ const filterEvents = (criteria, priorityCriteria, events) => {
 const mapStateToProps = state => ({
     calenderdata: filterEvents(state.fullCalender.filterCriteria, state.fullCalender.priorityFilterCriteria, state.fullCalender.calenderEvents.events),
     calendercriterai: state.fullCalender.filterCriteria,
-    modelWindowCalender: state.fullCalender.calenderModelWindow,
     newCalender: state.fullCalender.newCalenderEvents,
     priorityEvents: state.fullCalender.priorityEvents,
     priorityFilterCriteria: state.fullCalender.priorityFilterCriteria

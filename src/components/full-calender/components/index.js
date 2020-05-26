@@ -16,20 +16,25 @@ import interactionPlugin from '@fullcalendar/interaction';
 export default class EventCalender extends Component {
     date;
 
-    handleEvents = (e) => {
-        const eTarget= e.target;
-
-        this.props.allNewCalenderEvents({ ischecked: eTarget.checked, ObjId: eTarget.value });
+    state = {
+        open: false
     }
-    handleCloseButton = ()=>{
-        this.props.model(!this.props.modelWindowCalender);
+
+    handleModelCloseButton = ()=>{
+        this.setState({open: false});
     }
 
     handlerDateClick = (e) => {
         this.date = e.dateStr;
-        this.props.model(!this.props.modelWindowCalender);
-
+        this.setState({open: true});
     }
+
+    handleEvents = (e) => {
+        const {target: {checked: ischecked, value: ObjId}} = e;
+
+        this.props.allNewCalenderEvents({ ischecked, ObjId});
+    }
+
     componentWillMount = () => {
 
         this.props.fetchCalenderEventsData();
@@ -68,6 +73,8 @@ export default class EventCalender extends Component {
             eventType, title, date: selectedDate, priorityId, color, eventId: generateObjId()
         }
         );
+        this.setState({open: false});
+
     }
 
     render() {
@@ -121,12 +128,13 @@ export default class EventCalender extends Component {
             </div>
             
                 <ModelWindow
-                modelShow={this.props.modelWindowCalender}
+                modelShow={this.state.open}
                 handlerClick={this.handlerClick}
                 newCalender = {this.props.newCalender}
                 priorityEvents = {this.props.priorityEvents}
                 hasEvents = {this.props.newCalender.length>0}
-                handleCloseButton = {this.handleCloseButton}
+                handleModelCloseButton = {this.handleModelCloseButton}
+                handlerDateClick = {this.handlerDateClick}
             />
         </div>
         </div>);

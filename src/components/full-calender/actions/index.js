@@ -1,4 +1,4 @@
-import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, postNewCreateEventsData, updateCalenderEventByIdService} from '../components/shared/service';
+import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, deleteEventService, postNewCreateEventsData, updateCalenderEventByIdService} from '../components/shared/service';
 import actions from '../actions-list';
 
 export const allNewCalenderEvents = payload =>{
@@ -51,13 +51,21 @@ export const fetchProrityEvents = ()=>{
 			type: actions.PRIROTY_STATUS,
 			payload
 		});
-		
 	};
+};
 
+export const deleteEvent = payload=>{
+	return async dispatch =>{
+		const response = await deleteEventService(payload);
+
+		dispatch({
+			type: actions.UPDATE_ALL_CALENDER_EVENTS,
+			payload: response
+		});
+	};
 };
 
 export const updateCalenderEventById = payload=>{
-	debugger;
 	return async dispatch=>{
 		const response = await updateCalenderEventByIdService(payload);
 

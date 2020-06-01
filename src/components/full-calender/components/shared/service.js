@@ -65,3 +65,12 @@ export const updateCalenderEventByIdService = async (payload)=>{
 
     return myData.json();
 };
+
+export const deleteEventService = async (payload)=>{
+    const myData = await fetchCallData('delete-event', {
+        method: 'PUT',
+        body: JSON.stringify(payload)	
+    });
+
+    return myData.json();
+};

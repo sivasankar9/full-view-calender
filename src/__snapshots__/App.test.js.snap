@@ -1,5 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Given the <ComponentFunctionCodeMaintainencePage/> component should match the snapshot 1`] = `undefined`;
-
 exports[`Given the <appComponent/> component should match the snapshot 1`] = `ShallowWrapper {}`;

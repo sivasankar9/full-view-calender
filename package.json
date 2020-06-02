@@ -2,11 +2,11 @@
   "name": "react-full-calender",
   "version": "0.0.0",
   "private": true,
+  "engines":{
+    "node": "10.16.3",
+    "npm": "6.14.2"
+  },
   "dependencies": {
-    "@fullcalendar/core": "^4.4.0",
-    "@fullcalendar/daygrid": "^4.4.0",
-    "@fullcalendar/interaction": "^4.4.0",
-    "@fullcalendar/react": "^4.4.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",

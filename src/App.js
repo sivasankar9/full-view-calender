@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 class App extends Component{
 
-    rendere(){
+    render(){
         return (<div> Welcome siva sankar & manasa
             </div>);
     }

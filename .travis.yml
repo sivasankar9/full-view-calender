@@ -1,17 +1,16 @@
 language: node_js
 node_js:
-- stable
+  - stable
 cache:
   directories:
   - node_modules
 script:
-- npm run build
+  - npm run build
 deploy:
   provider: heroku
-  skip_cleanup: 'true'
-  api_key:
+api_key:
     secure: $API_KEY
-  app: calender-demo
-  on:
+app: calender-demo
+on:
     repo: sivasankar9/full-view-calender
     branch: pre-prod

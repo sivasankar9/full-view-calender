@@ -8,9 +8,10 @@ script:
 - npm run build
 deploy:
   provider: heroku
+  skip_cleanup: 'true'
   api_key:
-    secure: JaV13YSq9ryAnXdy9mmrun2tG6Bk+QsETQw3/IgZmT9ioaenM+tX4wotrnHgh2igO2WJgu8g5gvlj9YNfCrd3gsAma8nqAuriy6+cyWA4eaRXeLZoGUG2fwa4S7+fV2k+gTsgxpVFyK3lkQN519u3xTV27AXtSrXHfA9Qw2rsmrTYwl+JRA3zx4GLg2TwMQjb9C362wvM5w1bqLWLMuNsPx0vR38lEVZXAliuy097S8eo/Cyf8RUShP2HCsfNSyWFXngVkYkkHGdeBPlSQtpS4swbtUKUy37Bz3CIgLPXlYnsi+uqrrmDTtrZTrzXUNqeApIMqlNs9NH4JGf32U4WQj9VuMiYoKvBUUYDlV8AYzIA9orhZR0185eAWf3MSWF2Y20Qe0J6R0Xx9LXyWGrZuJ76dmU9oJGX+K4XsZYUMJmDokaFTt/Gd9ok4BJRLFmMBBlW4i8i0m35sXz0JLmP0wldBe9cH4dkBXgpTuuKbQEi3LcP6s56F4ZYbQWQ/mHhJdjGmVdVctvFs592pSifRGnEXNGBox3vQtiiB3IlwtB+hXsUYuQZl4OvhzR96688MKcIlLi6dj8isqtETEp6dwlrPKO/dSpoqFdXPeKVRxJkXDC3YWAMC0W1/kL1K9S0amKPDnV84o1vDgmRJzpSYSRc06v8Gxo3qlYLtTdAqw=
+    secure: $API_KEY
   app: calender-demo
   on:
     repo: sivasankar9/full-view-calender
-  skip_cleanup: 'true'
+    branch: pre-prod

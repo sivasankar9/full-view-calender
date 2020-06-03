@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+
 import actions from '../actions-list';
 
 let initialState = [];

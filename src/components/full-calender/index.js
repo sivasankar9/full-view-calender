@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+
 import { CreateNewCalenderEvent, allCalenderEvents, allNewCalenderEvents, deleteEvent, fetchCalenderEventsData, fetchNewCalenderEventsData, fetchProrityEvents, priorityUpdateCheckbox, updateCalenderEventById } from './actions';
 import EventCalender from './components';
 import { connect } from 'react-redux';

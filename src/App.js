@@ -1,17 +1,21 @@
-import React,{Component} from 'react';
-import PropTypes from 'prop-types';
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import AuthRoute from './components/full-calender/components/shared/auth-route';
+import EventCalender from './components/full-calender';
+import Loader from './components/full-calender/components/shared/loader';
+import Login from './components/full-calender/components/shared/login';
+import React from 'react';
+import Register from './components/full-calender/components/shared/register-form';
 
-const upper = (a)=>{a.toUpperCase()};
-class App extends Component{
-
-    render(){
-        return (<div>namez:::{upper('hi all')} Welcome siva sankar, manasa & Roith.
-            </div>);
-    }
-}
-
-App.propTypes = {
-  namez: PropTypes.string.isRequired
-}
-
-export default App;
+export default ()=><Router>
+             <div>
+                 <Loader />
+     
+                 <AuthRoute exact path='/' >
+                     <Login />
+                 </AuthRoute>
+                 
+                 <Route strict path='/calender' component={EventCalender} />
+     
+                 <Route strict path='/register' component={Register} />
+             </div>
+         </Router>;

@@ -1,20 +1,17 @@
+import actions from '../actions-list';
+
 let initialState = {
     events: []
 };
 
 export default (state = initialState, action) => {
-    if(action.type === 'ADD_EVENT'){
-        return {
+    switch (action.type) {
+        case actions.UPDATE_ALL_CALENDER_EVENTS: return {
             ...state,
-            events:[...state.events,action.payload]
+            events: [...action.payload]
         };
+        
+        default:return state;
     }
-    if(action.type === 'UPDATE_FETCH_EVENTS'){
-        return {
-            ...state,
-            events:[...action.payload]
-        };
-    }
-
-    return state;
+    
 };

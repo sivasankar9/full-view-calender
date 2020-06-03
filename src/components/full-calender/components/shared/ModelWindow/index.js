@@ -1,9 +1,13 @@
+import '@date-io/date-fns';
 import './style.css';
+import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 import React, { useRef, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
+import DateFnsUtils from '@date-io/date-fns';
 import Dialog from '@material-ui/core/Dialog';
 import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import MenuItem from '@material-ui/core/MenuItem';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -110,6 +114,12 @@ const ModalForm = (props) => {
 
     const [modelState, updateModelState] = useState(initialState);
 
+    const [selectedDate, setSelectedDate] = React.useState(new Date(props.state.inputDate));
+
+    const handleDateChange = (date) => {
+      setSelectedDate(date);
+    };
+
     const selectHandler = (e) => {
         const ObjId = e.target.value;
 
@@ -131,6 +141,24 @@ const ModalForm = (props) => {
                 inputRef={inputEl}
             />
             </form>
+
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify='space-around'>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    autoOk
+                    variant='inline'
+                    format='yyyy-MM-dd'
+                    margin='normal'
+                    id='date-picker-inline'
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                    'aria-label': 'change date'
+                    }}
+                  />
+                </Grid>
+           </MuiPickersUtilsProvider>
 
             <FormControl className={classes.formControl}>
                 <Select onBlur={selectHandler} onChange={selectHandler}  
@@ -158,9 +186,10 @@ const ModalForm = (props) => {
 
                     <Button onClick={() => {
                         const inputStr = inputEl.current.value;
+                        const inputDate = new Date(selectedDate).toISOString();
 
                             if (inputStr !== '') {
-                                props.handlerClick(inputStr, modelState.ObjId, modelState.priorityId, modelState.color);
+                                props.handlerClick(inputStr, modelState.ObjId, modelState.priorityId, modelState.color, inputDate);
                             }
                         }
                         } color='primary'>SAVE

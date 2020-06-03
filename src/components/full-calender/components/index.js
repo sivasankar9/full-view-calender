@@ -22,7 +22,8 @@ export default class EventCalender extends Component {
     readModeWindow: false,
     myText: "",
     isEditable: false,
-    eventsClick: {}
+    eventsClick: {},
+    inputDate: ''
   };
 
   handleModelCloseButton = () => {
@@ -31,7 +32,7 @@ export default class EventCalender extends Component {
 
   handlerDateClick = (e) => {
     this.date = e.dateStr;
-    this.setState({ open: true });
+    this.setState({ open: true, inputDate: e.dateStr });
   };
 
   handleReadModeModelOpen = (info) => {
@@ -85,13 +86,12 @@ export default class EventCalender extends Component {
     });
   };
 
-  handlerClick = (title, eventType, priorityId, color) => {
-    const selectedDate = this.date;
+  handlerClick = (title, eventType, priorityId, color, inputDate) => {
 
     this.props.allCalenderEvents({
       eventType,
       title,
-      date: selectedDate,
+      date: inputDate,
       priorityId,
       color,
       eventId: generateObjId()
@@ -106,9 +106,9 @@ export default class EventCalender extends Component {
   handleIsDeleted = (eventId) => {
       this.props.deleteEvent(eventId);
   };
-
   render() {
     return (
+
       <div>
         <div>
           <Header />
@@ -153,7 +153,9 @@ export default class EventCalender extends Component {
               plugins={[dayGridPlugin, interactionPlugin]}
               events={this.props.calenderdata}
               editable={true}
+              displayEventTime = {true}
               draggable={true}
+              timeZone = 'local'
               eventDrop={(info) => this.handlerEventsDrop(info)}
             />
           </div>
@@ -166,6 +168,7 @@ export default class EventCalender extends Component {
             hasEvents={this.props.newCalender.length > 0}
             handleModelCloseButton={this.handleModelCloseButton}
             handlerDateClick={this.handlerDateClick}
+            state={this.state}
           />
 
           <ReadModeModelWindow

@@ -1,8 +1,8 @@
 import '@date-io/date-fns';
 import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
+import DateFnsUtils from '@date-io/date-fns';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
 import Dialog from '@material-ui/core/Dialog';
 import EditIcon from '@material-ui/icons/Edit';
@@ -85,7 +85,6 @@ export default (props) =>{
            <TextField id='standard-basic'
            defaultValue = {props.state.myText}
            isEditable = {true}
-           autoFocus
            />
            </form>): null
           }

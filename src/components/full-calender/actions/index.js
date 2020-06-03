@@ -1,4 +1,4 @@
-import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, deleteEventService, postNewCreateEventsData, updateCalenderEventByIdService} from '../components/shared/service';
+import { deleteEventService, getCalenderEventsData, getEventsData, getProrityData, postEventsData, postNewCreateEventsData, updateCalenderEventByIdService} from '../components/shared/service';
 import actions from '../actions-list';
 
 export const allNewCalenderEvents = payload =>{

@@ -5,7 +5,7 @@ const upper = (a)=>{a.toUpperCase()};
 class App extends Component{
 
     render(){
-        return (<div>namez:::{upper([])} Welcome siva sankar, manasa & Roith.
+        return (<div>namez:::{upper('hi all')} Welcome siva sankar, manasa & Roith.
             </div>);
     }
 }

@@ -1,0 +1,21 @@
+.MuiFormHelperText-root.Mui-error {
+    color: #de0a0a;
+    margin-top: 0px;
+}
+
+.MuiFormHelperText-roott.Mui-error {
+    color: #008700;
+    margin-top: 0px;	   
+}	
+
+.MuiFormHelperText-root {
+    color: rgba(0, 0, 0, 0.54);
+    margin: 0;
+    font-size: 0.75rem;
+    margin-top: 3px;
+    text-align: left;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+}

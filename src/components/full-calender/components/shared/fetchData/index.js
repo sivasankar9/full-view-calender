@@ -2,16 +2,18 @@
 
 let eventsApi = 'https://new-calender-api.herokuapp.com';
 
-export default (url, options={}) => {
+export default (url, options = {}) => {
 
     const headers = {
         headers: {
-            'Content-Type': 'application/json'
-          },
-          ...options
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem("accessToken")}`
+        },
+        ...options
     };
 
-    let y = fetch(`${eventsApi}/${url}`, headers )
-        .then(resp =>resp);
-        return y;
+    const apiResponse = fetch(`${eventsApi}/${url}`, headers)
+        .then(resp => resp);
+
+    return apiResponse;
 };

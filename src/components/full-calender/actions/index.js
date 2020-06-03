@@ -1,86 +1,130 @@
-import { getCalenderEventsData, getEventsData,postEventsData,postNewCreateEventsData} from '../components/shared/service';
+import { getCalenderEventsData, getEventsData, getProrityData, postEventsData, deleteEventService, postNewCreateEventsData, updateCalenderEventByIdService} from '../components/shared/service';
+import actions from '../actions-list';
 
-export const updateCheckbox = payload =>{
+export const allNewCalenderEvents = payload =>{
 	return dispatch => {
 		
-		//api call update objectId with isChecked;
-		if(!payload.ischecked){
+		if (!payload.ischecked) {
 			dispatch({
-				type: "REMOVE_NEW_CALENDER",
+				type: actions.REMOVE_NEW_CALENDER,
 				payload
 			});
-		} else{
+		} else {
 			dispatch({
-				type: "ADD_NEW_CALENDER",
+				type: actions.ADD_NEW_CALENDER,
 				payload
 			});
 		}
 			
 		dispatch({
-			type: "UPDATE_NEW_CALENDER",
+			type: actions.UPDATE_ALL_NEW_CALENDER_EVENTS,
 			payload
 		});
 	
 	};
 }; 
 
-export const model = payload => dispatch => {
-
-	dispatch(({
-		type: "SHOW_MODEL",
+export const priorityUpdateCheckbox = payload=>dispatch=>{
+	if (!payload.isSelected) {
+		dispatch({
+			type: actions.REMOVE_PRIORITY,
+			payload
+		});
+	} else {
+		dispatch({
+			type: actions.ADD_PRIORITY,
+			payload
+		});
+	}
+	dispatch({
+		type: actions.UPDATE_PRIORITY_CHECKBOX,
 		payload
-	})
-	);
+	});
+	
 };
 
-export const fetchData = () => {
-	return async dispatch => {
-
-		const response = await getEventsData();
-		const payload = await response.json();
-		
-		dispatch(({
-			type: "UPDATE_FETCH_EVENTS",
-			payload
-		})
-		);
-	};
-};
-
-export const fetchCalenderEvents = () => {
-	return async dispatch => {
-
-		const response = await getCalenderEventsData();
-		const payload = await response.json();
-
-		dispatch(({
-			type: "FETCH_CALENDER_EVENTS",
-			payload
-		})
-		);
+export const fetchProrityEvents = ()=>{
+	return async dispatch=>{
+		const payload = await getProrityData();
 
 		dispatch({
-			type: "ALL_CALENDER_EVENTS",
+			type: actions.PRIROTY_STATUS,
 			payload
 		});
 	};
 };
 
-export const addEvent = (payload) => {
+export const deleteEvent = payload=>{
+	return async dispatch =>{
+		const response = await deleteEventService(payload);
+
+		dispatch({
+			type: actions.UPDATE_ALL_CALENDER_EVENTS,
+			payload: response
+		});
+	};
+};
+
+export const updateCalenderEventById = payload=>{
+	return async dispatch=>{
+		const response = await updateCalenderEventByIdService(payload);
+
+		dispatch(({
+			type: actions.UPDATE_ALL_CALENDER_EVENTS,
+			payload: response
+		})
+		);
+	};
+};
+
+export const model = payload => dispatch => {
+
+	dispatch(({
+		type: actions.SHOW_MODEL,
+		payload
+	})
+	);
+};
+
+export const fetchCalenderEventsData = () => {
+	return async dispatch => {
+
+		const payload = await getEventsData();
+		
+		dispatch(({
+			type: actions.UPDATE_ALL_CALENDER_EVENTS,
+			payload
+		})
+		);
+	};
+};
+
+export const fetchNewCalenderEventsData = () => {
+	return async dispatch => {
+
+		const payload = await getCalenderEventsData();
+
+		dispatch(({
+			type: actions.FETCH_ALL_NEW_CALENDER_EVENTS,
+			payload
+		})
+		);
+	};
+};
+
+export const allCalenderEvents = (payload) => {
 
 	return async dispatch => {
 		
 		const response = await postEventsData(payload);
-		const data = await response.json();
 
-		if (data.ok) {
+		if (response.ok) {
 			
 			const response = await getEventsData();
-			const payload = await response.json();
 
 			dispatch(({
-				type: "UPDATE_FETCH_EVENTS",
-				payload
+				type: actions.UPDATE_ALL_CALENDER_EVENTS,
+				payload: response
 			})
 			);
 		}
@@ -88,25 +132,23 @@ export const addEvent = (payload) => {
 
 };
 
-export const addCreateEvent = (payload) => {
+export const CreateNewCalenderEvent = (payload) => {
 
 	return async dispatch => {
 		
 		const response = await postNewCreateEventsData(payload);
-		const data = await response.json();
-		if (data.ok) {
+
+		if (response.ok) {
 			
 			const response = await getCalenderEventsData();
-			const payload = await response.json();
-
 
 			dispatch(({
-				type: "FETCH_CALENDER_EVENTS",
-				payload
+				type: actions.FETCH_ALL_NEW_CALENDER_EVENTS,
+				payload: response
 			})
 			);
 		dispatch({
-			type: "ALL_CALENDER_EVENTS",
+			type: actions.ALL_CALENDER_EVENTS,
 			payload
 		});
 		}

@@ -1,3 +1,6 @@
+import '@date-io/date-fns';
+import {KeyboardDatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import Button from '@material-ui/core/Button';
 import CloseIcon from '@material-ui/icons/Close';
 import DeleteSharpIcon from '@material-ui/icons/DeleteSharp';
@@ -55,7 +58,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default (props) =>{
+  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
   const classes = useStyles();
 
     return props.modelShow ?
@@ -83,10 +90,28 @@ export default (props) =>{
            </form>): null
           }
         <DialogContent dividers>
-          <Typography gutterBottom> 
-            {props.state.myText}
-          </Typography>
+        {
+          props.state.isEditable?null:(<Typography gutterBottom> 
+          {props.state.myText}
+          </Typography>)
+        }
          
+         <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify='space-around'>
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant='inline'
+                    format='MM/dd/yyyy'
+                    margin='normal'
+                    id='date-picker-inline'
+                    value={selectedDate}
+                    onChange={handleDateChange}
+                    KeyboardButtonProps={{
+                    'aria-label': 'change date'
+                    }}
+                  />
+                </Grid>
+           </MuiPickersUtilsProvider>
         </DialogContent>
         <Button color='primary'>SAVE </Button>
       </Dialog>

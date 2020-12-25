@@ -6,7 +6,7 @@ export default (props) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [setError] = useState("");
 
     const submitForm = () => {
         if (username === "" || password === "") {

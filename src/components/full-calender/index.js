@@ -1,5 +1,6 @@
+/* eslint-disable eqeqeq */
 
-import { CreateNewCalenderEvent, allCalenderEvents, allNewCalenderEvents, fetchCalenderEventsData, fetchNewCalenderEventsData, fetchProrityEvents, model, priorityUpdateCheckbox, updateCalenderEventById } from './actions';
+import { CreateNewCalenderEvent, allCalenderEvents, allNewCalenderEvents, deleteEvent, fetchCalenderEventsData, fetchNewCalenderEventsData, fetchProrityEvents, priorityUpdateCheckbox, updateCalenderEventById } from './actions';
 import EventCalender from './components';
 import { connect } from 'react-redux';
 
@@ -30,11 +31,10 @@ const filterEvents = (criteria, priorityCriteria, events) => {
 const mapStateToProps = state => ({
     calenderdata: filterEvents(state.fullCalender.filterCriteria, state.fullCalender.priorityFilterCriteria, state.fullCalender.calenderEvents.events),
     calendercriterai: state.fullCalender.filterCriteria,
-    modelWindowCalender: state.fullCalender.calenderModelWindow,
     newCalender: state.fullCalender.newCalenderEvents,
     priorityEvents: state.fullCalender.priorityEvents,
     priorityFilterCriteria: state.fullCalender.priorityFilterCriteria
 
 });
 
-export default connect(mapStateToProps, { updateCalenderEventById, fetchProrityEvents, allNewCalenderEvents, model, allCalenderEvents, fetchNewCalenderEventsData, fetchCalenderEventsData, CreateNewCalenderEvent, priorityUpdateCheckbox })(EventCalender);
+export default connect(mapStateToProps, {deleteEvent, updateCalenderEventById, fetchProrityEvents, allNewCalenderEvents, allCalenderEvents, fetchNewCalenderEventsData, fetchCalenderEventsData, CreateNewCalenderEvent, priorityUpdateCheckbox })(EventCalender);

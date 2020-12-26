@@ -1,4 +1,3 @@
-import './style.css';
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import App from './App';
 import {Provider} from 'react-redux';

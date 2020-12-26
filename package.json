@@ -1,12 +1,7 @@
 {
   "name": "react-full-calender",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
-  "main": "index.js",
-  "engines": {
-    "node": "10.16.3",
-    "npm": "6.14.2"
-  },
   "dependencies": {
     "@date-io/date-fns": "v1",
     "@fullcalendar/core": "^4.4.0",
@@ -21,7 +16,6 @@
     "date-fns": "latest",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "express": "^4.17.1",
     "moment": "^2.26.0",
     "moment-timezone": "^0.5.31",
     "prop-types": "^15.7.2",
@@ -33,12 +27,10 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "save-dev": "0.0.1-security",
     "shallow": "^1.0.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "start:dev": "react-scripts start",
+    "start": "react-scripts start",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "eslint": "eslint src",
     "test": "react-scripts test --env=jsdom",

@@ -27,7 +27,8 @@
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "shallow": "^1.0.0"
+    "shallow": "^1.0.0",
+    "eslint": "^7.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
